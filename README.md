@@ -184,7 +184,7 @@
 <!-- PROFILE:RECENT-REPOS:START -->
 | Repository | Description | Primary language | Stars | Last pushed |
 |---|---|---:|---:|---:|
-| [mailflows-campaign-studio](https://github.com/Adarsh-Singh-Chauhan/mailflows-campaign-studio) | Build AI-assisted email &amp; WhatsApp campaigns from contact files with dynamic templates, multi… | — | ★ 0 | 01 Nov 2026 |
+| [mailflows-campaign-studio](https://github.com/Adarsh-Singh-Chauhan/mailflows-campaign-studio) | Build AI-assisted email &amp; WhatsApp campaigns from contact files with dynamic templates, multi… | HTML | ★ 0 | 01 Nov 2026 |
 | [unisathi](https://github.com/Adarsh-Singh-Chauhan/unisathi) | unisathi | HTML | ★ 0 | 31 Oct 2026 |
 | [DOCFORGE](https://github.com/Adarsh-Singh-Chauhan/DOCFORGE) | onvert any document (PDF, Scans, Tables, LaTeX) into clean, token-efficient Markdown — 100% o… | Python | ★ 0 | 28 Oct 2026 |
 | [NEXA---Multimodal-Web-Data-Agent](https://github.com/Adarsh-Singh-Chauhan/NEXA---Multimodal-Web-Data-Agent) | NEXA is a modern, production-ready AI web data agent built with Next.js, Tailwind CSS, and Go… | TypeScript | ★ 0 | 23 Sep 2026 |
