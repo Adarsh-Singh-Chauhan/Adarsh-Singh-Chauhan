@@ -299,28 +299,52 @@ def group_recent_commits(commits: list[dict], limit: int = 7) -> list[dict]:
 
 def make_activity_svg(items: list[dict], updated_at: str) -> str:
     selected = items[:7]
-    height = 120 + max(1, len(selected)) * 43
-    pieces = []
-    palette = ["#22d3ee", "#f472b6", "#a78bfa", "#4ade80", "#fbbf24", "#60a5fa", "#fb7185"]
+    height = 112 + max(1, len(selected)) * 58
+    rows = []
+    accents = ["#27e7ff", "#ff4fb7", "#b58cff", "#4ade80", "#f5c451", "#60a5fa", "#fb7185"]
     for i, item in enumerate(selected):
-        y = 88 + i * 43
+        y = 82 + i * 58
+        accent = accents[i % len(accents)]
         repo_name = item["repo"]
+        short_name = repo_name.split("/")[-1]
         count = int(item.get("count", 1))
-        label = f"Pushed {count} public commit(s) to {repo_name.split('/')[-1]}"
-        pieces.append(
-            f'<circle cx="30" cy="{y - 4}" r="6" fill="{palette[i % len(palette)]}"/>'
-            f'<text x="50" y="{y}" fill="#e2e8f0" font-family="Arial,sans-serif" font-size="13">{html.escape(safe_text(label, 100))}</text>'
-            f'<text x="50" y="{y + 17}" fill="#7890aa" font-family="Arial,sans-serif" font-size="10">{html.escape(item["date"])} · <tspan fill="#22d3ee">{html.escape(repo_name)}</tspan></text>'
+        message = safe_text(item.get("message"), 74)
+        date = item["date"]
+        rows.append(
+            f'<g transform="translate(24,{y})">'
+            f'<rect width="952" height="48" rx="10" fill="#0d1729" stroke="#344762" stroke-opacity=".72"/>'
+            f'<rect width="4" height="48" rx="2" fill="{accent}"/>'
+            f'<circle cx="24" cy="24" r="8" fill="{accent}" fill-opacity=".13" stroke="{accent}" stroke-opacity=".85"/>'
+            f'<circle cx="24" cy="24" r="3" fill="{accent}"/>'
+            f'<text x="44" y="20" fill="#f4f8ff" font-family="Arial,sans-serif" font-size="13" font-weight="700">{html.escape(safe_text(short_name, 34))}</text>'
+            f'<text x="44" y="36" fill="#849bb7" font-family="Arial,sans-serif" font-size="9.5">{html.escape(message)}</text>'
+            f'<text x="730" y="20" fill="#7c91ad" font-family="Arial,sans-serif" font-size="9">{html.escape(date)} · IST</text>'
+            f'<rect x="858" y="9" width="78" height="30" rx="8" fill="{accent}" fill-opacity=".12" stroke="{accent}" stroke-opacity=".62"/>'
+            f'<text x="897" y="28" text-anchor="middle" fill="{accent}" font-family="Arial,sans-serif" font-size="11" font-weight="800">{count} COMMIT{"S" if count != 1 else ""}</text>'
+            f'</g>'
         )
-    if not pieces:
-        pieces.append('<text x="30" y="100" fill="#9fb5cf" font-family="Arial,sans-serif" font-size="14">No public commits found in the 90-day activity window.</text>')
+    if not rows:
+        rows.append(
+            '<text x="34" y="115" fill="#9fb5cf" font-family="Arial,sans-serif" font-size="14">'
+            'No public commits found in the 90-day activity window.</text>'
+        )
     return (
         f'<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="{height}" viewBox="0 0 1000 {height}">'
-        '<rect width="1000" height="100%" rx="18" fill="#070b16" stroke="#26364e"/>'
-        '<text x="28" y="38" fill="#f8fafc" font-family="Arial,sans-serif" font-size="19" font-weight="700">LATEST PUBLIC COMMITS</text>'
-        f'<text x="28" y="58" fill="#8fa8c3" font-family="Arial,sans-serif" font-size="11">Commit API · grouped by repository and India date · synced {html.escape(updated_at)}</text>'
-        f'<path d="M30 78V{height - 28}" stroke="#354967" stroke-width="2"/>'
-        + "".join(pieces)
+        '<defs>'
+        '<linearGradient id="logEdge" x1="0" x2="1"><stop stop-color="#27e7ff"/><stop offset=".5" stop-color="#9b72ff"/><stop offset="1" stop-color="#ff4fb7"/></linearGradient>'
+        '<pattern id="logGrid" width="28" height="28" patternUnits="userSpaceOnUse"><path d="M28 0H0V28" fill="none" stroke="#7187a5" stroke-opacity=".06"/></pattern>'
+        '<filter id="logGlow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>'
+        '</defs>'
+        f'<rect width="1000" height="{height}" rx="20" fill="#070b16" stroke="#344762" stroke-width="1.2"/>'
+        f'<rect width="1000" height="{height}" rx="20" fill="url(#logGrid)"/>'
+        '<path d="M20 63H980" stroke="url(#logEdge)" stroke-width="2" opacity=".9" filter="url(#logGlow)"/>'
+        '<rect x="24" y="19" width="5" height="24" rx="2" fill="#27e7ff"/>'
+        '<text x="42" y="34" fill="#f5f8ff" font-family="Arial,sans-serif" font-size="19" font-weight="800" letter-spacing=".7">COMBAT LOG // LATEST PUBLIC COMMITS</text>'
+        f'<text x="976" y="34" text-anchor="end" fill="#4ade80" font-family="Arial,sans-serif" font-size="9.5" font-weight="700">● LIVE SYNC</text>'
+        f'<text x="25" y="53" fill="#8299b7" font-family="Arial,sans-serif" font-size="10">PUBLIC REPOSITORIES · GROUPED BY PROJECT + INDIA DATE · {html.escape(updated_at)}</text>'
+        + "".join(rows)
+        + f'<text x="25" y="{height - 14}" fill="#637b9b" font-family="Arial,sans-serif" font-size="9">SOURCE: GITHUB COMMITS API · PRIVATE REPOSITORIES EXCLUDED</text>'
+        + f'<text x="975" y="{height - 14}" text-anchor="end" fill="#27e7ff" font-family="Arial,sans-serif" font-size="9">ASC / ENGINEERING FEED</text>'
         + "</svg>"
     )
 
@@ -331,15 +355,17 @@ def make_daily_quest_svg(
     public_repos: int,
     stars: int,
     updated_at: str,
+    portfolio_views: int | None,
 ) -> str:
     today_count = daily_counts.get(today, 0)
     week = [today - dt.timedelta(days=i) for i in range(6, -1, -1)]
     weekly_total = sum(daily_counts.get(day, 0) for day in week)
     xp = weekly_total * 25
     level = xp // 500 + 1
-    progress_xp = xp % 500
+    current_xp = xp % 500
+    xp_progress = current_xp / 500 * 100
     goal = 5
-    goal_width = min(1.0, today_count / goal) * 390
+    goal_percent = min(100, int(today_count / goal * 100))
     streak_end = today if today_count else today - dt.timedelta(days=1)
     streak = 0
     check = streak_end
@@ -347,57 +373,100 @@ def make_daily_quest_svg(
         streak += 1
         check -= dt.timedelta(days=1)
 
+    views_value = f"{portfolio_views:,}" if portfolio_views is not None else "—"
     cards = [
-        ("TODAY'S COMMITS", str(today_count), "#22d3ee", "PUBLIC REPOS ONLY"),
-        ("PUBLIC REPOSITORIES", f"{public_repos:,}", "#f472b6", "ACCOUNT-WIDE"),
-        ("CURRENT STREAK", f"{streak} DAY" if streak == 1 else f"{streak} DAYS", "#4ade80", "CONSECUTIVE ACTIVE DAYS"),
-        (f"LVL {level} · WEEKLY XP", f"{xp:,} XP", "#a78bfa", "25 XP PER PUBLIC COMMIT"),
+        ("TODAY'S COMMITS", f"{today_count:,}", "#27e7ff", "PUBLIC COMMIT RECORDS", "01"),
+        ("PUBLIC REPOSITORIES", f"{public_repos:,}", "#ff4fb7", "ACCOUNT-WIDE COUNT", "02"),
+        ("PORTFOLIO VIEWS", views_value, "#f5c451", "VERCEL SITE PAGE VIEWS", "03"),
+        ("CURRENT STREAK", f"{streak} DAYS", "#4ade80", "CONSECUTIVE ACTIVE DAYS", "04"),
+        (f"LEVEL {level} · WEEKLY XP", f"{xp:,}", "#b58cff", "25 XP / PUBLIC COMMIT", "05"),
     ]
     blocks = []
-    for i, (label, value, accent, subtitle) in enumerate(cards):
-        x = 26 + i * 240
+    card_width = 180
+    for i, (label, value, accent, subtitle, number) in enumerate(cards):
+        x = 24 + i * 192
         blocks.append(
-            f'<g transform="translate({x},84)"><rect width="220" height="105" rx="13" fill="#0d1628" stroke="{accent}" stroke-opacity=".65"/>'
-            f'<text x="15" y="23" fill="#9bb0ca" font-family="Arial,sans-serif" font-size="10" font-weight="700" letter-spacing=".6">{html.escape(label)}</text>'
-            f'<text x="15" y="62" fill="#f8fafc" font-family="Arial,sans-serif" font-size="27" font-weight="800">{html.escape(value)}</text>'
-            f'<text x="15" y="84" fill="{accent}" font-family="Arial,sans-serif" font-size="9">{html.escape(subtitle)}</text></g>'
+            f'<g transform="translate({x},88)">'
+            f'<rect width="{card_width}" height="102" rx="13" fill="#0c1729" stroke="{accent}" stroke-opacity=".76" stroke-width="1.2"/>'
+            f'<path d="M12 1H{card_width - 12}" stroke="{accent}" stroke-width="2" opacity=".75"/>'
+            f'<text x="13" y="22" fill="#8fa7c4" font-family="Arial,sans-serif" font-size="8.8" font-weight="700" letter-spacing=".55">{html.escape(label)}</text>'
+            f'<text x="13" y="59" fill="#f7fbff" font-family="Arial,sans-serif" font-size="25" font-weight="900">{html.escape(value)}</text>'
+            f'<text x="13" y="82" fill="{accent}" font-family="Arial,sans-serif" font-size="8" font-weight="700">{html.escape(subtitle)}</text>'
+            f'<text x="{card_width - 12}" y="22" text-anchor="end" fill="{accent}" opacity=".72" font-family="Arial,sans-serif" font-size="8">{number}</text>'
+            f'</g>'
         )
 
-    chart_x, chart_y, chart_w, chart_h = 38, 247, 924, 102
+    chart_x, chart_y, chart_w, chart_h = 54, 277, 892, 96
     max_value = max([daily_counts.get(day, 0) for day in week] + [1])
     bars = []
-    bar_w = 72
-    gap = 52
+    bar_w = 64
+    gap = 59
     for i, day in enumerate(week):
         count = daily_counts.get(day, 0)
         h = max(4, chart_h * count / max_value) if count else 4
-        x = chart_x + 44 + i * (bar_w + gap)
+        x = chart_x + 16 + i * (bar_w + gap)
         y = chart_y + chart_h - h
-        accent = "#22d3ee" if day == today else "#8b5cf6"
+        is_today = day == today
+        accent = "#27e7ff" if is_today else "#8b72ff"
         bars.append(
-            f'<rect x="{x}" y="{y:.1f}" width="{bar_w}" height="{h:.1f}" rx="7" fill="{accent}" opacity=".92"/>'
-            f'<text x="{x + bar_w/2}" y="{y - 8:.1f}" text-anchor="middle" fill="#e2e8f0" font-family="Arial,sans-serif" font-size="11" font-weight="700">{count}</text>'
-            f'<text x="{x + bar_w/2}" y="{chart_y + chart_h + 22}" text-anchor="middle" fill="#9fb5cf" font-family="Arial,sans-serif" font-size="10">{day.strftime("%a")}</text>'
+            f'<rect x="{x}" y="{y:.1f}" width="{bar_w}" height="{h:.1f}" rx="7" fill="{accent}" opacity=".93"/>'
+            f'<rect x="{x}" y="{y:.1f}" width="{bar_w}" height="3" rx="2" fill="#ffffff" opacity=".34"/>'
+            f'<text x="{x + bar_w/2}" y="{y - 8:.1f}" text-anchor="middle" fill="#f1f6ff" font-family="Arial,sans-serif" font-size="10" font-weight="800">{count}</text>'
+            f'<text x="{x + bar_w/2}" y="{chart_y + chart_h + 20}" text-anchor="middle" fill="{accent if is_today else "#90a4bf"}" font-family="Arial,sans-serif" font-size="9.5" font-weight="700">{day.strftime("%a").upper()}</text>'
         )
 
+    progress_width = 890 * goal_percent / 100
     return (
-        '<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="405" viewBox="0 0 1000 405">'
-        '<defs><linearGradient id="questGrad" x1="0" x2="1"><stop stop-color="#22d3ee"/><stop offset=".55" stop-color="#8b5cf6"/><stop offset="1" stop-color="#f472b6"/></linearGradient>'
-        '<filter id="glow"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>'
-        '<rect width="1000" height="405" rx="18" fill="#070b16" stroke="#384763" stroke-width="1.2"/>'
-        '<path d="M18 65H982" stroke="url(#questGrad)" stroke-width="2" opacity=".8"/>'
-        '<text x="28" y="35" fill="#f8fafc" font-family="Arial,sans-serif" font-size="19" font-weight="800" letter-spacing=".5">⚡ DEVELOPER QUEST // PUBLIC ACTIVITY</text>'
-        f'<text x="970" y="36" text-anchor="end" fill="#4ade80" font-family="Arial,sans-serif" font-size="10">LIVE SYNC · {html.escape(updated_at)}</text>'
+        '<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="440" viewBox="0 0 1000 440">'
+        '<defs>'
+        '<linearGradient id="questEdge" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#27e7ff"/><stop offset=".48" stop-color="#9b72ff"/><stop offset="1" stop-color="#ff4fb7"/></linearGradient>'
+        '<linearGradient id="questProgress" x1="0" x2="1"><stop stop-color="#27e7ff"/><stop offset=".55" stop-color="#9b72ff"/><stop offset="1" stop-color="#ff4fb7"/></linearGradient>'
+        '<radialGradient id="questAura"><stop stop-color="#214b83" stop-opacity=".32"/><stop offset="1" stop-color="#070b16" stop-opacity="0"/></radialGradient>'
+        '<pattern id="questGrid" width="26" height="26" patternUnits="userSpaceOnUse"><path d="M26 0H0V26" fill="none" stroke="#8296b5" stroke-opacity=".07"/></pattern>'
+        '<filter id="questGlow"><feGaussianBlur stdDeviation="4" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>'
+        '</defs>'
+        '<rect width="1000" height="440" rx="20" fill="#070b16" stroke="#3a4b68" stroke-width="1.3"/>'
+        '<rect width="1000" height="440" rx="20" fill="url(#questGrid)"/>'
+        '<ellipse cx="520" cy="220" rx="480" ry="280" fill="url(#questAura)"/>'
+        '<path d="M20 67H980" stroke="url(#questEdge)" stroke-width="2" filter="url(#questGlow)"/>'
+        '<rect x="24" y="20" width="5" height="25" rx="2" fill="#27e7ff"/>'
+        '<text x="42" y="37" fill="#f7fbff" font-family="Arial,sans-serif" font-size="20" font-weight="900" letter-spacing=".7">ASC // DEVELOPER QUEST</text>'
+        '<text x="42" y="55" fill="#8fa7c4" font-family="Arial,sans-serif" font-size="9.5" letter-spacing=".8">PLAYER PROFILE · ENGINEERING CLASS · PUBLIC ACTIVITY ONLY</text>'
+        f'<circle cx="816" cy="34" r="4" fill="#4ade80"><animate attributeName="opacity" values=".35;1;.35" dur="2s" repeatCount="indefinite"/></circle>'
+        f'<text x="830" y="37" fill="#4ade80" font-family="Arial,sans-serif" font-size="9" font-weight="800">LIVE SYNC</text>'
+        f'<text x="976" y="55" text-anchor="end" fill="#7187a5" font-family="Arial,sans-serif" font-size="8.5">{html.escape(updated_at)}</text>'
         + "".join(blocks)
-        + '<text x="30" y="226" fill="#dbeafe" font-family="Arial,sans-serif" font-size="12" font-weight="700">7-DAY ACTIVITY MAP</text>'
-        + '<text x="970" y="226" text-anchor="end" fill="#8fa8c3" font-family="Arial,sans-serif" font-size="10">TODAY GOAL: 5 PUBLIC COMMITS</text>'
-        + f'<rect x="30" y="360" width="940" height="9" rx="5" fill="#1a2940"/>'
-        + f'<rect x="30" y="360" width="{goal_width:.1f}" height="9" rx="5" fill="url(#questGrad)" filter="url(#glow)"/>'
-        + f'<text x="30" y="389" fill="#9fb5cf" font-family="Arial,sans-serif" font-size="10">DAILY QUEST: {today_count}/{goal} commits · {min(100, int(today_count / goal * 100))}% COMPLETE</text>'
-        + f'<text x="970" y="389" text-anchor="end" fill="#7187a5" font-family="Arial,sans-serif" font-size="9">GAME XP = 25 × public commits this week · not an official GitHub metric</text>'
+        + '<path d="M24 211H976" stroke="#2b3b56" stroke-width="1"/>'
+        + '<text x="30" y="239" fill="#dceaff" font-family="Arial,sans-serif" font-size="11" font-weight="800" letter-spacing=".7">7-DAY ACTIVITY MAP</text>'
+        + '<text x="970" y="239" text-anchor="end" fill="#91a6c4" font-family="Arial,sans-serif" font-size="9">TODAY'S MISSION · 5 PUBLIC COMMITS</text>'
+        + '<path d="M54 273H946" stroke="#273b59" stroke-width="1" stroke-dasharray="4 6"/>'
         + "".join(bars)
+        + '<rect x="54" y="403" width="892" height="8" rx="4" fill="#18263d"/>'
+        + f'<rect x="54" y="403" width="{progress_width:.1f}" height="8" rx="4" fill="url(#questProgress)" filter="url(#questGlow)"/>'
+        + f'<text x="54" y="429" fill="#a9bdd7" font-family="Arial,sans-serif" font-size="9">DAILY MISSION: {today_count}/{goal} COMMITS · {goal_percent}% COMPLETE</text>'
+        + f'<text x="946" y="429" text-anchor="end" fill="#7088a8" font-family="Arial,sans-serif" font-size="8.5">WEEKLY XP: {current_xp}/500 TO NEXT LEVEL · TOTAL {xp:,} XP</text>'
         + "</svg>"
     )
+
+
+def get_portfolio_views() -> int | None:
+    """Read the live portfolio page-view counter without incrementing it."""
+    url = (
+        "https://counterapi.com/api/"
+        "adarsh-engineering-portfolio-rust.vercel.app/view/portfolio-home?readOnly=true"
+    )
+    try:
+        request = urllib.request.Request(
+            url,
+            headers={"Accept": "application/json", "User-Agent": "Adarsh-Portfolio-Stats"},
+        )
+        with urllib.request.urlopen(request, timeout=15) as response:
+            payload = json.loads(response.read().decode("utf-8"))
+        value = payload.get("value")
+        return int(value) if value is not None else None
+    except Exception as exc:
+        print(f"Warning: portfolio view counter unavailable: {exc}")
+        return None
 
 
 def main() -> None:
@@ -468,6 +537,7 @@ def main() -> None:
             print(f"Warning: language stats unavailable for {repo.get('full_name')}: {exc}")
 
     updated_at = now.strftime("%d %b %Y · %I:%M %p IST")
+    portfolio_views = get_portfolio_views()
     readme = README.read_text(encoding="utf-8")
     if "<!-- PROFILE:RECENT-REPOS:START -->" in readme and "<!-- PROFILE:RECENT-REPOS:END -->" in readme:
         readme = replace_section(
@@ -499,13 +569,14 @@ def main() -> None:
         make_activity_svg(recent_commit_groups, updated_at), encoding="utf-8"
     )
     (DIST / "daily-quest.svg").write_text(
-        make_daily_quest_svg(today, daily_counts, public_count, total_stars, updated_at),
+        make_daily_quest_svg(today, daily_counts, public_count, total_stars, updated_at, portfolio_views),
         encoding="utf-8",
     )
     print(
         f"Refreshed at {updated_at}: {public_count} public repositories, "
         f"{daily_counts.get(today, 0)} public commits today, "
-        f"{sum(daily_counts.get(today - dt.timedelta(days=i), 0) for i in range(7))} public commits in 7 days."
+        f"{sum(daily_counts.get(today - dt.timedelta(days=i), 0) for i in range(7))} public commits in 7 days; "
+        f"{portfolio_views if portfolio_views is not None else 'unavailable'} portfolio page views."
     )
 
 
