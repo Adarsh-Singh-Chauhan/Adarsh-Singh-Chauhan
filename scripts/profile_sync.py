@@ -103,6 +103,8 @@ def commits_for_repo(repo: dict, since: str) -> list[dict]:
             raise
         if not isinstance(batch, list):
             return commits
+        for commit in batch:
+            commit["_repo_full_name"] = f"{owner}/{name}"
         commits.extend(batch)
         if len(batch) < 100:
             break
@@ -273,27 +275,50 @@ def make_languages_svg(language_bytes: dict[str, int]) -> str:
     )
 
 
+def group_recent_commits(commits: list[dict], limit: int = 7) -> list[dict]:
+    grouped: dict[tuple, dict] = {}
+    for commit in commits:
+        day = commit_day(commit)
+        repo_name = commit.get("_repo_full_name")
+        if not day or not repo_name:
+            continue
+        key = (repo_name, day.isoformat())
+        if key not in grouped:
+            message = ((commit.get("commit") or {}).get("message") or "").splitlines()[0]
+            grouped[key] = {
+                "repo": repo_name, "date": day.isoformat(), "count": 0,
+                "message": safe_text(message, 74), "latest": day.isoformat(),
+            }
+        grouped[key]["count"] += 1
+    return sorted(
+        grouped.values(),
+        key=lambda item: (item["date"], item["count"]),
+        reverse=True,
+    )[:limit]
+
+
 def make_activity_svg(items: list[dict], updated_at: str) -> str:
-    height = 120 + max(1, len(items)) * 43
+    selected = items[:7]
+    height = 120 + max(1, len(selected)) * 43
     pieces = []
     palette = ["#22d3ee", "#f472b6", "#a78bfa", "#4ade80", "#fbbf24", "#60a5fa", "#fb7185"]
-    for i, item in enumerate(items):
+    for i, item in enumerate(selected):
         y = 88 + i * 43
         repo_name = item["repo"]
-        label = event_label(item)
-        url = f"https://github.com/{repo_name}"
+        count = int(item.get("count", 1))
+        label = f"Pushed {count} public commit(s) to {repo_name.split('/')[-1]}"
         pieces.append(
             f'<circle cx="30" cy="{y - 4}" r="6" fill="{palette[i % len(palette)]}"/>'
             f'<text x="50" y="{y}" fill="#e2e8f0" font-family="Arial,sans-serif" font-size="13">{html.escape(safe_text(label, 100))}</text>'
             f'<text x="50" y="{y + 17}" fill="#7890aa" font-family="Arial,sans-serif" font-size="10">{html.escape(item["date"])} · <tspan fill="#22d3ee">{html.escape(repo_name)}</tspan></text>'
         )
     if not pieces:
-        pieces.append('<text x="30" y="100" fill="#9fb5cf" font-family="Arial,sans-serif" font-size="14">No recent public events returned by GitHub.</text>')
+        pieces.append('<text x="30" y="100" fill="#9fb5cf" font-family="Arial,sans-serif" font-size="14">No public commits found in the 90-day activity window.</text>')
     return (
         f'<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="{height}" viewBox="0 0 1000 {height}">'
         '<rect width="1000" height="100%" rx="18" fill="#070b16" stroke="#26364e"/>'
-        '<text x="28" y="38" fill="#f8fafc" font-family="Arial,sans-serif" font-size="19" font-weight="700">LATEST PUBLIC ACTIVITY</text>'
-        f'<text x="28" y="58" fill="#8fa8c3" font-family="Arial,sans-serif" font-size="11">Grouped by repository and India date · synced {html.escape(updated_at)}</text>'
+        '<text x="28" y="38" fill="#f8fafc" font-family="Arial,sans-serif" font-size="19" font-weight="700">LATEST PUBLIC COMMITS</text>'
+        f'<text x="28" y="58" fill="#8fa8c3" font-family="Arial,sans-serif" font-size="11">Commit API · grouped by repository and India date · synced {html.escape(updated_at)}</text>'
         f'<path d="M30 78V{height - 28}" stroke="#354967" stroke-width="2"/>'
         + "".join(pieces)
         + "</svg>"
@@ -469,8 +494,9 @@ def main() -> None:
         make_stats_svg(public_count, total_stars, total_forks, followers), encoding="utf-8"
     )
     (DIST / "languages.svg").write_text(make_languages_svg(language_bytes), encoding="utf-8")
+    recent_commit_groups = group_recent_commits(commits, limit=7)
     (DIST / "public-activity.svg").write_text(
-        make_activity_svg(grouped_events, updated_at), encoding="utf-8"
+        make_activity_svg(recent_commit_groups, updated_at), encoding="utf-8"
     )
     (DIST / "daily-quest.svg").write_text(
         make_daily_quest_svg(today, daily_counts, public_count, total_stars, updated_at),
