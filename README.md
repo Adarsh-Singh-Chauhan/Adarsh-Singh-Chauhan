@@ -16,7 +16,7 @@
 <table>
   <tr>
     <td width="28%" align="center" valign="top">
-      <img src="https://avatars.githubusercontent.com/u/175235397?v=4" width="170" alt="Adarsh Singh Chauhan profile photo"/>
+      <img src="https://github.com/Adarsh-Singh-Chauhan.png?size=512" width="170" alt="Adarsh Singh Chauhan profile photo"/>
       <h3>ADARSH SINGH CHAUHAN</h3>
       <p><strong>Software Development Engineer</strong><br/>Software Engineer</p>
       <p><a href="https://github.com/Adarsh-Singh-Chauhan">GitHub</a> · <a href="https://www.linkedin.com/in/adarsh-singh-5189b9283/">LinkedIn</a></p>
