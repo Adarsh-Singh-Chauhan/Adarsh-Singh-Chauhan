@@ -14,7 +14,7 @@
 </p>
 
 <p align="center">
-  <img src="https://counterapi.com/counter.svg?ns=adarsh-engineering-portfolio-rust.vercel.app&amp;action=view&amp;key=portfolio-home&amp;readOnly=true&amp;label=PORTFOLIO%20VISITS&amp;labelColor=111827&amp;color=22d3ee" alt="Live portfolio visit counter — read only"/>
+  <img src="https://icount.kr/count.php?id=adarsh-engineering-portfolio-rust.vercel.app&amp;format=badge" alt="Live portfolio page-view counter"/>
 </p>
 
 <table>
@@ -106,7 +106,7 @@ I’m **Adarsh Singh Chauhan**, a Software Development Engineer focused on build
   <img src="https://raw.githubusercontent.com/Adarsh-Singh-Chauhan/Adarsh-Singh-Chauhan/output/daily-quest.svg" width="100%" alt="Daily Developer Quest with today's public commits, public repository count, streak, weekly XP and seven-day commit activity"/>
 </p>
 
-<sub>Developer Quest refreshes hourly from public GitHub repositories. Today is calculated in Asia/Kolkata time. XP is a playful score (25 XP per public commit in the last seven days), not an official GitHub metric. Portfolio visits are counted on the live Vercel site; this README badge is read-only and does not increment the counter.</sub>
+<sub>Developer Quest refreshes hourly from public GitHub repositories. Today is calculated in Asia/Kolkata time. XP is a playful score (25 XP per public commit in the last seven days), not an official GitHub metric. Portfolio unique visitors and page views are tracked by iCount on the live Vercel site; this README badge only displays the count.</sub>
 
 ## ✦ CONNECT
 
