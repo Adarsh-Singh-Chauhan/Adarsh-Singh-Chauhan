@@ -1,63 +1,44 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1600" height="540" viewBox="0 0 1600 540" role="img" aria-labelledby="title desc">
-<title id="title">Adarsh Singh Chauhan — Software Development Engineer</title>
-<desc id="desc">Neon cyberpunk gaming-inspired developer profile banner featuring Adarsh's actual GitHub avatar, engineering specializations, and a futuristic interface.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="520" viewBox="0 0 1200 520" role="img" aria-labelledby="t d">
+<title id="t">Adarsh Singh Chauhan | Software Development Engineer</title>
+<desc id="d">Neon cyberpunk gaming inspired developer hero panel with engineering terminal graphics, neon pink and cyan effects.</desc>
 <defs>
-  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#050711"/><stop offset=".48" stop-color="#10091e"/><stop offset="1" stop-color="#061a2c"/></linearGradient>
-  <linearGradient id="pink" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#fb277b"/><stop offset=".55" stop-color="#ff5bb3"/><stop offset="1" stop-color="#c084fc"/></linearGradient>
-  <linearGradient id="cyan" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#22d3ee"/><stop offset="1" stop-color="#818cf8"/></linearGradient>
-  <radialGradient id="halo"><stop stop-color="#ec4899" stop-opacity=".34"/><stop offset=".62" stop-color="#7c3aed" stop-opacity=".14"/><stop offset="1" stop-color="#050711" stop-opacity="0"/></radialGradient>
-  <pattern id="grid" width="34" height="34" patternUnits="userSpaceOnUse"><path d="M34 0H0V34" fill="none" stroke="#6b8ba8" stroke-opacity=".12"/></pattern>
-  <filter id="glow"><feGaussianBlur stdDeviation="8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-  <clipPath id="portrait"><circle cx="1278" cy="270" r="174"/></clipPath>
-  <style>
-    .ui{font-family:Inter,Segoe UI,Arial,sans-serif}.mono{font-family:ui-monospace,SFMono-Regular,Consolas,monospace}
-    .fade{animation:fade 3s ease-in-out infinite}.pulse{animation:pulse 2.8s ease-in-out infinite}
-    .float{animation:float 5s ease-in-out infinite}.flow{stroke-dasharray:10 12;animation:flow 12s linear infinite}
-    .scan{animation:scan 5.5s linear infinite}
-    @keyframes fade{0%,100%{opacity:.45}50%{opacity:1}}
-    @keyframes pulse{0%,100%{opacity:.58;stroke-width:2}50%{opacity:1;stroke-width:5}}
-    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
-    @keyframes flow{to{stroke-dashoffset:-260}}
-    @keyframes scan{0%{transform:translateY(-60px)}100%{transform:translateY(620px)}}
-  </style>
+ <linearGradient id="b" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#050711"/><stop offset=".5" stop-color="#120b22"/><stop offset="1" stop-color="#071b2e"/></linearGradient>
+ <linearGradient id="p"><stop stop-color="#f72585"/><stop offset=".55" stop-color="#fb5bb3"/><stop offset="1" stop-color="#a78bfa"/></linearGradient>
+ <linearGradient id="c"><stop stop-color="#22d3ee"/><stop offset="1" stop-color="#818cf8"/></linearGradient>
+ <pattern id="g" width="32" height="32" patternUnits="userSpaceOnUse"><path d="M32 0H0V32" stroke="#7190b0" stroke-opacity=".13" fill="none"/></pattern>
+ <filter id="gl"><feGaussianBlur stdDeviation="5" result="z"/><feMerge><feMergeNode in="z"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+ <style>
+ .u{font-family:Arial,Helvetica,sans-serif}.m{font-family:monospace}
+ .glow{animation:glow 2.8s ease-in-out infinite}.scan{animation:scan 5s linear infinite}
+ .dash{stroke-dasharray:8 12;animation:dash 10s linear infinite}
+ @keyframes glow{0%,100%{opacity:.5}50%{opacity:1}}
+ @keyframes scan{0%{transform:translateY(-30px)}100%{transform:translateY(560px)}}
+ @keyframes dash{to{stroke-dashoffset:-240}}
+ </style>
 </defs>
-<rect width="1600" height="540" rx="24" fill="url(#bg)"/><rect width="1600" height="540" rx="24" fill="url(#grid)"/>
-<ellipse cx="1265" cy="266" rx="340" ry="300" fill="url(#halo)"/>
-<path d="M0 82H1600" stroke="#334155" stroke-opacity=".6"/>
-<g class="ui" fill="#dbeafe" font-size="13" letter-spacing="2">
-  <text x="46" y="49" fill="#f472b6" font-weight="800">ASC / DEV SYSTEM</text>
-  <text x="640" y="49">HOME</text><text x="725" y="49" fill="#71869e">ABOUT</text><text x="810" y="49" fill="#71869e">PROJECTS</text><text x="925" y="49" fill="#71869e">TECH STACK</text><text x="1060" y="49" fill="#71869e">CONNECT</text>
-  <rect x="628" y="62" width="50" height="3" rx="2" fill="url(#pink)"/>
+<rect width="1200" height="520" rx="20" fill="url(#b)"/><rect width="1200" height="520" rx="20" fill="url(#g)"/>
+<path d="M0 72H1200" stroke="#334155"/><path d="M0 480H1200" stroke="#334155" stroke-opacity=".6"/>
+<g class="m" font-size="12" fill="#8ca6c4" letter-spacing="2"><text x="42" y="44" fill="#f472b6">ASC // DEV SYSTEM</text><text x="660" y="44">HOME</text><text x="740" y="44">PROJECTS</text><text x="850" y="44">ENGINEERING</text><text x="1010" y="44">CONNECT</text></g>
+<path d="M650 61H706" stroke="url(#p)" stroke-width="3"/>
+<g opacity=".65" fill="none" stroke="#fb277b"><path d="M0 135H76L120 90H260M0 162H50L92 120H160"/><path d="M1000 96H1115L1145 126H1200M1040 125H1140L1170 155H1200"/></g>
+<g class="m" font-size="12" fill="#67e8f9"><text x="66" y="135">BUILD / CODE / TEST / DEPLOY</text><text x="66" y="164">SOFTWARE ENGINEERING PROFILE 01</text></g>
+<g class="u">
+ <text x="62" y="286" fill="#f8fafc" font-size="126" font-weight="900" letter-spacing="-6">ADARSH</text>
+ <text x="68" y="358" fill="url(#p)" font-size="68" font-weight="900">SINGH CHAUHAN</text>
+ <rect x="70" y="382" width="730" height="3" rx="2" fill="url(#c)" filter="url(#gl)"/>
+ <text x="70" y="424" fill="#ffffff" font-size="22" font-weight="800" letter-spacing="1">SOFTWARE DEVELOPMENT ENGINEER</text>
+ <text x="70" y="456" fill="#d7c9ea" font-size="18" letter-spacing=".8">SOFTWARE ENGINEER  /  FULL-STACK  /  AI &amp; ML</text>
+ <text x="70" y="493" fill="#8ea8c3" font-size="14">Engineering real products. Exploring AI. Shipping with purpose.</text>
 </g>
-<g fill="none" stroke="#fb277b" stroke-opacity=".38" stroke-width="2">
- <path d="M0 138H70L108 100H225M0 163H53L100 116H170"/>
- <path d="M1460 100H1532L1560 128H1600M1484 124H1544L1570 150H1600"/>
- <path d="M0 420H70L102 452H205M1400 540V483L1450 433H1600"/>
+<g transform="translate(878 190)">
+ <rect width="260" height="210" rx="14" fill="#080e1e" stroke="#22d3ee" stroke-opacity=".7" stroke-width="2" filter="url(#gl)"/>
+ <rect x="14" y="14" width="232" height="28" rx="6" fill="#111d33"/>
+ <circle cx="28" cy="28" r="4" fill="#fb7185"/><circle cx="42" cy="28" r="4" fill="#fbbf24"/><circle cx="56" cy="28" r="4" fill="#4ade80"/>
+ <text x="72" y="32" class="m" fill="#8faac5" font-size="10">terminal / build.log</text>
+ <g class="m" font-size="14"><text x="20" y="78" fill="#67e8f9">&gt; build();</text><text x="20" y="110" fill="#67e8f9">&gt; test();</text><text x="20" y="142" fill="#67e8f9">&gt; deploy();</text><text x="20" y="178" fill="#86efac">✓ SYSTEM READY</text></g>
+ <circle cx="222" cy="176" r="7" fill="#4ade80" class="glow"/>
 </g>
-<g class="mono" font-size="12" fill="#7dd3fc"><text x="78" y="128">SYSTEM / PROFILE.01</text><text x="78" y="156">BUILD  •  CODE  •  TEST  •  DEPLOY</text></g>
-<g class="ui">
- <text x="70" y="265" fill="#f8fafc" font-size="124" font-weight="900" letter-spacing="-5">ADARSH</text>
- <text x="76" y="334" fill="url(#pink)" font-size="67" font-weight="900" letter-spacing="1">SINGH CHAUHAN</text>
- <rect x="78" y="358" width="640" height="3" rx="2" fill="url(#cyan)"/>
- <text x="78" y="400" fill="#ffffff" font-size="23" font-weight="800" letter-spacing="1.1">SOFTWARE DEVELOPMENT ENGINEER</text>
- <text x="78" y="433" fill="#d5c9e8" font-size="19" letter-spacing=".8">SOFTWARE ENGINEER  /  FULL-STACK  /  AI &amp; ML</text>
- <text x="78" y="478" fill="#91a7bd" font-size="15">Building practical products with engineering discipline and creative energy.</text>
-</g>
-<g class="float">
- <circle cx="1278" cy="270" r="198" fill="none" stroke="#f72585" stroke-opacity=".4" stroke-width="3" class="pulse"/>
- <circle cx="1278" cy="270" r="186" fill="none" stroke="#22d3ee" stroke-opacity=".7" stroke-width="2" stroke-dasharray="4 12" class="flow"/>
- <circle cx="1278" cy="270" r="174" fill="#080d19" stroke="url(#pink)" stroke-width="7" filter="url(#glow)"/>
- <image href="https://avatars.githubusercontent.com/u/175235397?v=4" xlink:href="https://avatars.githubusercontent.com/u/175235397?v=4" x="1104" y="96" width="348" height="348" preserveAspectRatio="xMidYMid slice" clip-path="url(#portrait)"/>
- <circle cx="1278" cy="270" r="174" fill="none" stroke="#f9a8d4" stroke-opacity=".7" stroke-width="2"/>
-</g>
-<g transform="translate(1000 452)">
- <rect width="516" height="54" rx="12" fill="#090d1b" stroke="#5b315f" stroke-width="1.5"/>
- <circle cx="27" cy="27" r="6" fill="#4ade80" class="fade"/>
- <text x="47" y="22" class="mono" fill="#a7f3d0" font-size="12">ENGINEERING STATUS</text>
- <text x="47" y="40" class="ui" fill="#f8fafc" font-size="15" font-weight="700">ONLINE  /  BUILDING WHAT'S NEXT</text>
- <text x="492" y="33" class="mono" fill="#f472b6" text-anchor="end" font-size="12">VIBE MODE: ON</text>
-</g>
-<g transform="translate(78 505)" class="mono" fill="#94a3b8" font-size="11"><text>FULL-STACK</text><text x="105">AI / ML</text><text x="190">CYBERSECURITY</text><text x="335">CLOUD</text><text x="420" fill="#f9a8d4">VIBE CODING</text></g>
-<rect x="0" y="0" width="1600" height="540" rx="24" fill="none" stroke="#74315e" stroke-opacity=".55" stroke-width="2"/>
-<rect x="0" y="0" width="1600" height="35" fill="#22d3ee" opacity=".035" class="scan"/>
+<g class="m" font-size="11" fill="#8ea8c3"><text x="70" y="40">01 / PORTFOLIO</text><text x="1135" y="492" text-anchor="end">VIBE CODING MODE: ACTIVE</text></g>
+<rect width="1200" height="520" rx="20" fill="none" stroke="#873b79" stroke-opacity=".7" stroke-width="2"/>
+<rect width="1200" height="25" fill="#22d3ee" opacity=".035" class="scan"/>
 </svg>
