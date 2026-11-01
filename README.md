@@ -7,14 +7,24 @@
 <!-- =============== HERO =============== -->
 <table>
   <tr>
-    <td width="68%" valign="middle">
+    <td width="52%" valign="middle">
       <img src="./assets/adarsh-cyber-banner.svg" width="100%" alt="Adarsh Singh Chauhan — Software Development Engineer" />
     </td>
-    <td width="32%" align="center" valign="middle">
-      <img src="https://avatars.githubusercontent.com/u/175235397?v=4" width="220" alt="Adarsh Singh Chauhan profile photograph" />
-      <h3>ADARSH SINGH CHAUHAN</h3>
-      <p><strong>Software Development Engineer</strong><br/>Software Engineer</p>
-      <p><a href="https://github.com/Adarsh-Singh-Chauhan"><img src="https://img.shields.io/badge/GitHub-Profile-111827?style=for-the-badge&logo=github" alt="GitHub profile"/></a></p>
+    <td width="23%" align="center" valign="middle">
+      <img src="https://avatars.githubusercontent.com/u/175235397?v=4" width="190" alt="Adarsh Singh Chauhan profile photograph" />
+      <p><strong>ADARSH SINGH CHAUHAN</strong><br/>Software Engineer</p>
+    </td>
+    <td width="25%" valign="middle">
+      <h3>SECONDARY SPECIALIZATIONS</h3>
+      <p>💻 Full-Stack Web Developer<br/>
+      🖥️ Frontend Engineer<br/>
+      ⚙️ Backend Developer<br/>
+      🧠 AI &amp; Machine Learning Developer<br/>
+      🤖 AI Application Developer<br/>
+      🔄 Automation &amp; Agentic AI Enthusiast<br/>
+      🛡️ Cybersecurity &amp; Software Testing Enthusiast<br/>
+      ☁️ Cloud &amp; Deployment Enthusiast<br/>
+      ✨ <strong>Vibe Coding</strong> &amp; AI-assisted Development</p>
     </td>
   </tr>
 </table>
