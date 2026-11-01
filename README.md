@@ -8,7 +8,11 @@
 </p>
 
 <p align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=18&duration=2600&pause=850&color=22D3EE&center=true&vCenter=true&width=850&height=45&lines=Building+reliable+software+and+useful+digital+products;Full-Stack+Engineering+%7C+AI%2FML+%7C+Cybersecurity;From+product+architecture+to+deployment+and+testing;Turning+complex+workflows+into+working+systems" alt="Animated developer introduction" />
+  <img src="./assets/adarsh-coding-workstation.svg" width="100%" alt="Adarsh at a neon coding workstation — Vibe Coding Lab" />
+</p>
+
+<p align="center">
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=18&duration=2600&pause=850&color=22D3EE&center=true&vCenter=true&width=850&height=45&lines=Software+Development+Engineer+%7C+Software+Engineer;Full-Stack+%7C+Frontend+%7C+Backend;AI%2FML+%7C+Cybersecurity+%7C+Cloud;Vibe+Coding+%26+AI-assisted+Development;Plan+%7C+Code+%7C+Test+%7C+Deploy" alt="Animated developer introduction" />
 </p>
 
 <p align="center">
@@ -43,6 +47,7 @@ I am **Adarsh Singh Chauhan**, a Software Development Engineer focused on design
 | Automation & Agentic AI Enthusiast | Workflow automation, tool-connected agents, orchestration |
 | Cybersecurity & Software Testing Enthusiast | Security-minded development, validation, QA and testing |
 | Cloud & Deployment Enthusiast | Git-based delivery, hosting, deployment and operations |
+| Vibe Coding & AI-assisted Development | Rapid prototyping with AI tools, iterative coding, code review and engineering validation |
 
 ## 🚀 Featured Projects
 
@@ -84,11 +89,11 @@ A selection of projects from my repositories. Open each repository for implement
   </tr>
   <tr>
     <td width="50%" valign="top">
-      <h3>🏅 TechCred</h3>
-      <p><b>Technical Skill Verification & Recruitment</b></p>
-      <p>A skill-evidence and recruitment platform concept with coding assessments, isolated code execution, candidate profiles, and recruiter discovery.</p>
-      <p><sub>Next.js · TypeScript · Supabase · PostgreSQL · Judge0 · Vitest</sub></p>
-      <a href="https://github.com/Adarsh-Singh-Chauhan/TechCred">View repository →</a>
+      <h3>🕶️ CyberSentric Landing</h3>
+      <p><b>Cybersecurity Product Landing Page</b></p>
+      <p>A product-facing web experience presenting the CyberSentric cybersecurity concept with a focused visual identity and landing-page flow.</p>
+      <p><sub>Web Design · Frontend Development · Product UI</sub></p>
+      <a href="https://github.com/Adarsh-Singh-Chauhan/Cybersentric-landing">View public repository →</a>
     </td>
     <td width="50%" valign="top">
       <h3>🎮 Hackathon Simulator</h3>
@@ -115,6 +120,12 @@ A selection of projects from my repositories. Open each repository for implement
     </td>
   </tr>
 </table>
+
+## 🛰️ Latest Public Repositories — Auto Updated
+
+<!-- PROFILE:RECENT-REPOS:START -->
+_The first scheduled refresh will populate this list from public repositories only._
+<!-- PROFILE:RECENT-REPOS:END -->
 
 <p align="center">
   <a href="https://github.com/Adarsh-Singh-Chauhan?tab=repositories"><img src="https://img.shields.io/badge/Explore-All%20Repositories-0891b2?style=for-the-badge&logo=github&logoColor=white" alt="Explore all repositories" /></a>
@@ -148,19 +159,18 @@ My work and responsibilities span software validation, feature and workflow revi
 **Engineering & Delivery:** Git, GitHub, Docker, AWS fundamentals, Vercel, Linux  
 **Quality:** Software Testing, QA workflows, debugging, technical documentation
 
-## 📊 GitHub Activity
+## 📊 GitHub Engineering Metrics
 
 <p align="center">
-  <img height="165" src="https://github-readme-stats.vercel.app/api?username=Adarsh-Singh-Chauhan&show_icons=true&theme=tokyonight&hide_border=true&rank_icon=github&include_all_commits=true" alt="GitHub statistics" />
-  <img height="165" src="https://github-readme-stats.vercel.app/api/top-langs/?username=Adarsh-Singh-Chauhan&layout=compact&theme=tokyonight&hide_border=true&langs_count=8" alt="Most used languages" />
+  <img src="https://raw.githubusercontent.com/Adarsh-Singh-Chauhan/Adarsh-Singh-Chauhan/output/profile-stats.svg" width="100%" alt="Live public GitHub repository statistics" />
 </p>
 
 <p align="center">
-  <img src="https://streak-stats.demolab.com?user=Adarsh-Singh-Chauhan&theme=tokyonight&hide_border=true" alt="GitHub contribution streak" width="70%" />
+  <img src="https://raw.githubusercontent.com/Adarsh-Singh-Chauhan/Adarsh-Singh-Chauhan/output/languages.svg" width="100%" alt="Programming languages used across public repositories" />
 </p>
 
 <p align="center">
-  <img src="https://github-readme-activity-graph.vercel.app/graph?username=Adarsh-Singh-Chauhan&theme=tokyo-night&hide_border=true&area=true" width="100%" alt="GitHub contribution activity graph" />
+  <img src="https://raw.githubusercontent.com/Adarsh-Singh-Chauhan/Adarsh-Singh-Chauhan/output/public-activity.svg" width="100%" alt="Recent public GitHub activity" />
 </p>
 
 ## 🐍 Contribution Trail
@@ -169,14 +179,21 @@ My work and responsibilities span software validation, feature and workflow revi
   <img src="https://raw.githubusercontent.com/Adarsh-Singh-Chauhan/Adarsh-Singh-Chauhan/output/github-contribution-grid-snake-dark.svg" alt="GitHub contribution snake animation" />
 </p>
 
-<sub>To activate the snake animation, configure the GitHub Actions workflow included in this repository. The SVG appears after the workflow generates and publishes the output branch.</sub>
+<sub>The contribution snake and the profile's public metrics are regenerated automatically by GitHub Actions. Private/locked repositories are excluded.</sub>
+
+## ⚡ Latest Public Activity
+
+<!-- PROFILE:PUBLIC-ACTIVITY:START -->
+_The first scheduled refresh will populate recent public events._
+<!-- PROFILE:PUBLIC-ACTIVITY:END -->
 
 ## 🎯 Current Engineering Focus
 
 - Building dependable full-stack applications from requirements to deployment.
-- Exploring practical AI/ML integrations and document intelligence.
-- Improving software quality through systematic testing and debugging.
-- Learning more about cloud infrastructure, secure development, and automation.
+- Exploring practical AI/ML integrations, agentic workflows, and document intelligence.
+- Using **Vibe Coding** for rapid prototyping while retaining human review, testing, and engineering ownership.
+- Improving software quality through systematic testing, debugging, and secure development.
+- Learning more about cloud infrastructure, automation, and reliable deployment.
 
 ## 🤝 Connect
 
