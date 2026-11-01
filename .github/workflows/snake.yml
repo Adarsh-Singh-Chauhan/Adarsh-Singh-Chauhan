@@ -1,9 +1,9 @@
-name: Generate Contribution Snake
+name: Refresh Animated GitHub Profile
 
 on:
-  schedule:
-    - cron: "0 0 * * *"
   workflow_dispatch:
+  schedule:
+    - cron: "17 */6 * * *"
   push:
     branches:
       - main
@@ -11,19 +11,45 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: profile-assets-output
+  cancel-in-progress: false
+
 jobs:
-  generate:
+  refresh-profile:
     runs-on: ubuntu-latest
     steps:
-      - name: Generate contribution snake
+      - name: Check out profile repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Refresh public repositories, activity and stats
+        run: python scripts/profile_sync.py
+
+      - name: Generate animated contribution snake
         uses: Platane/snk@v3
         with:
           github_user_name: Adarsh-Singh-Chauhan
           outputs: |
             dist/github-contribution-grid-snake.svg
             dist/github-contribution-grid-snake-dark.svg?palette=github-dark
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Publish snake to output branch
+      - name: Commit updated public repository feed
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: refresh public GitHub profile data"
+          file_pattern: README.md
+          branch: main
+
+      - name: Publish generated profile assets
         uses: crazy-max/ghaction-github-pages@v4
         with:
           target_branch: output
