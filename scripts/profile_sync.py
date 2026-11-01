@@ -463,7 +463,11 @@ def get_portfolio_stats() -> dict | None:
             headers={"Accept": "application/json", "User-Agent": "Adarsh-Portfolio-Stats"},
         )
         with urllib.request.urlopen(request, timeout=15) as response:
-            payload = json.loads(response.read().decode("utf-8"))
+            body = response.read().decode("utf-8").strip()
+        if not body:
+            print("iCount has no stats record yet; waiting for the first human portfolio visit.")
+            return None
+        payload = json.loads(body)
         total = payload.get("total") or {}
         if not isinstance(total.get("uv"), int) or not isinstance(total.get("pv"), int):
             raise ValueError("iCount did not return total unique visitors and page views.")
