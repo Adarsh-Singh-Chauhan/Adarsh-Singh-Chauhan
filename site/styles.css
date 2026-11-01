@@ -306,3 +306,11 @@ button{font:inherit}
 .repo-feed-stars{color:#f5d180;font:9px Rajdhani,sans-serif}
 .repo-feed-date{color:#788eaa;font:9px Rajdhani,sans-serif;text-align:right}
 @media(max-width:760px){.latest-repo-list{grid-template-columns:1fr}}
+
+.credentials-strip{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin:18px 0}
+.credentials-card{position:relative;overflow:hidden;padding:17px 18px;border:1px solid rgba(73,91,128,.65);border-radius:12px;background:linear-gradient(145deg,rgba(12,18,35,.97),rgba(8,12,25,.96))}
+.credentials-card:before{content:"";position:absolute;inset:0 0 auto;height:2px;background:linear-gradient(90deg,var(--cyan),var(--pink),var(--purple));opacity:.75}
+.credential-tags{display:flex;flex-wrap:wrap;gap:7px}
+.credential-tags span{display:inline-flex;align-items:center;padding:7px 10px;border:1px solid rgba(80,102,145,.58);border-radius:6px;background:rgba(17,28,49,.72);color:#cbd8eb;font:600 10px Rajdhani,sans-serif}
+.credentials-card .card-title{margin-bottom:13px}
+@media(max-width:760px){.credentials-strip{grid-template-columns:1fr}}
