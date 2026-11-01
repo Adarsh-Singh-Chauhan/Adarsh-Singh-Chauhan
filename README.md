@@ -124,7 +124,18 @@ A selection of projects from my repositories. Open each repository for implement
 ## 🛰️ Latest Public Repositories — Auto Updated
 
 <!-- PROFILE:RECENT-REPOS:START -->
-_The first scheduled refresh will populate this list from public repositories only._
+| Repository | Description | Primary language | Stars | Last pushed |
+|---|---|---:|---:|---:|
+| [mailflows-campaign-studio](https://github.com/Adarsh-Singh-Chauhan/mailflows-campaign-studio) | Build AI-assisted email &amp; WhatsApp campaigns from contact files with dynamic templates, multi… | — | ★ 0 | 01 Nov 2026 |
+| [unisathi](https://github.com/Adarsh-Singh-Chauhan/unisathi) | unisathi | HTML | ★ 0 | 31 Oct 2026 |
+| [DOCFORGE](https://github.com/Adarsh-Singh-Chauhan/DOCFORGE) | onvert any document (PDF, Scans, Tables, LaTeX) into clean, token-efficient Markdown — 100% o… | Python | ★ 0 | 28 Oct 2026 |
+| [NEXA---Multimodal-Web-Data-Agent](https://github.com/Adarsh-Singh-Chauhan/NEXA---Multimodal-Web-Data-Agent) | NEXA is a modern, production-ready AI web data agent built with Next.js, Tailwind CSS, and Go… | TypeScript | ★ 0 | 23 Sep 2026 |
+| [build-ship-survive-hackathon-simulator](https://github.com/Adarsh-Singh-Chauhan/build-ship-survive-hackathon-simulator) | Build. Ship. Survive. An AI-powered hackathon simulator with mentors, chaos events, multiplay… | TypeScript | ★ 0 | 01 Jul 2026 |
+| [hackverse-ai](https://github.com/Adarsh-Singh-Chauhan/hackverse-ai) | HackVerse AI is a production-grade, gamified platform designed to revolutionize how students,… | TypeScript | ★ 0 | 10 Jun 2026 |
+| [Cybersentric-landing](https://github.com/Adarsh-Singh-Chauhan/Cybersentric-landing) | A stunning, responsive cyborg-themed landing page built with pure HTML, CSS, and JavaScript.… | HTML | ★ 0 | 31 May 2026 |
+| [CyberSentric](https://github.com/Adarsh-Singh-Chauhan/CyberSentric) | AI-powered real-time cybersecurity intelligence and response system with threat detection, au… | Python | ★ 0 | 31 May 2026 |
+
+<sub>Automatically refreshed every 6 hours from GitHub's public repository API. Private/locked repositories are not queried or displayed.</sub>
 <!-- PROFILE:RECENT-REPOS:END -->
 
 <p align="center">
@@ -184,7 +195,13 @@ My work and responsibilities span software validation, feature and workflow revi
 ## ⚡ Latest Public Activity
 
 <!-- PROFILE:PUBLIC-ACTIVITY:START -->
-_The first scheduled refresh will populate recent public events._
+- **28 Oct 2026** — Pushed 1 commit(s) to [Adarsh-Singh-Chauhan/DOCFORGE](https://github.com/Adarsh-Singh-Chauhan/DOCFORGE)
+- **28 Oct 2026** — Pushed 1 commit(s) to [Adarsh-Singh-Chauhan/DOCFORGE](https://github.com/Adarsh-Singh-Chauhan/DOCFORGE)
+- **28 Oct 2026** — Pushed 1 commit(s) to [Adarsh-Singh-Chauhan/DOCFORGE](https://github.com/Adarsh-Singh-Chauhan/DOCFORGE)
+- **28 Oct 2026** — Pushed 1 commit(s) to [Adarsh-Singh-Chauhan/DOCFORGE](https://github.com/Adarsh-Singh-Chauhan/DOCFORGE)
+- **28 Oct 2026** — Pushed 1 commit(s) to [Adarsh-Singh-Chauhan/DOCFORGE](https://github.com/Adarsh-Singh-Chauhan/DOCFORGE)
+
+<sub>Public events only. Private repository activity is intentionally omitted.</sub>
 <!-- PROFILE:PUBLIC-ACTIVITY:END -->
 
 ## 🎯 Current Engineering Focus
