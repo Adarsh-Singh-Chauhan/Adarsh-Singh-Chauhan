@@ -355,7 +355,7 @@ def make_daily_quest_svg(
     public_repos: int,
     stars: int,
     updated_at: str,
-    portfolio_views: int | None,
+    portfolio_stats: dict | None,
 ) -> str:
     today_count = daily_counts.get(today, 0)
     week = [today - dt.timedelta(days=i) for i in range(6, -1, -1)]
@@ -373,24 +373,29 @@ def make_daily_quest_svg(
         streak += 1
         check -= dt.timedelta(days=1)
 
-    views_value = f"{portfolio_views:,}" if portfolio_views is not None else "—"
+    totals = (portfolio_stats or {}).get("total") or {}
+    unique_visitors = totals.get("uv")
+    page_views = totals.get("pv")
+    unique_value = f"{unique_visitors:,}" if isinstance(unique_visitors, int) else "—"
+    page_views_value = f"{page_views:,}" if isinstance(page_views, int) else "—"
     cards = [
         ("TODAY'S COMMITS", f"{today_count:,}", "#27e7ff", "PUBLIC COMMIT RECORDS", "01"),
         ("PUBLIC REPOSITORIES", f"{public_repos:,}", "#ff4fb7", "ACCOUNT-WIDE COUNT", "02"),
-        ("PORTFOLIO VIEWS", views_value, "#f5c451", "VERCEL SITE PAGE VIEWS", "03"),
-        ("CURRENT STREAK", f"{streak} DAYS", "#4ade80", "CONSECUTIVE ACTIVE DAYS", "04"),
-        (f"LEVEL {level} · WEEKLY XP", f"{xp:,}", "#b58cff", "25 XP / PUBLIC COMMIT", "05"),
+        ("UNIQUE VISITORS", unique_value, "#f5c451", "ALL-TIME VISITORS", "03"),
+        ("TOTAL PAGE VIEWS", page_views_value, "#60a5fa", "ALL-TIME PAGE LOADS", "04"),
+        ("CURRENT STREAK", f"{streak} DAYS", "#4ade80", "CONSECUTIVE ACTIVE DAYS", "05"),
+        (f"LEVEL {level} · WEEKLY XP", f"{xp:,}", "#b58cff", "25 XP / PUBLIC COMMIT", "06"),
     ]
     blocks = []
-    card_width = 180
+    card_width = 150
     for i, (label, value, accent, subtitle, number) in enumerate(cards):
-        x = 24 + i * 192
+        x = 20 + i * 160
         blocks.append(
             f'<g transform="translate({x},88)">'
             f'<rect width="{card_width}" height="102" rx="13" fill="#0c1729" stroke="{accent}" stroke-opacity=".76" stroke-width="1.2"/>'
             f'<path d="M12 1H{card_width - 12}" stroke="{accent}" stroke-width="2" opacity=".75"/>'
             f'<text x="13" y="22" fill="#8fa7c4" font-family="Arial,sans-serif" font-size="8.8" font-weight="700" letter-spacing=".55">{html.escape(label)}</text>'
-            f'<text x="13" y="59" fill="#f7fbff" font-family="Arial,sans-serif" font-size="25" font-weight="900">{html.escape(value)}</text>'
+            f'<text x="13" y="59" fill="#f7fbff" font-family="Arial,sans-serif" font-size="21" font-weight="900">{html.escape(value)}</text>'
             f'<text x="13" y="82" fill="{accent}" font-family="Arial,sans-serif" font-size="8" font-weight="700">{html.escape(subtitle)}</text>'
             f'<text x="{card_width - 12}" y="22" text-anchor="end" fill="{accent}" opacity=".72" font-family="Arial,sans-serif" font-size="8">{number}</text>'
             f'</g>'
@@ -449,12 +454,9 @@ def make_daily_quest_svg(
     )
 
 
-def get_portfolio_views() -> int | None:
-    """Read the live portfolio page-view counter without incrementing it."""
-    url = (
-        "https://counterapi.com/api/"
-        "adarsh-engineering-portfolio-rust.vercel.app/view/portfolio-home?readOnly=true"
-    )
+def get_portfolio_stats() -> dict | None:
+    """Read public iCount analytics for the portfolio without incrementing visits."""
+    url = "https://icount.kr/api.php?id=adarsh-engineering-portfolio-rust.vercel.app"
     try:
         request = urllib.request.Request(
             url,
@@ -462,10 +464,12 @@ def get_portfolio_views() -> int | None:
         )
         with urllib.request.urlopen(request, timeout=15) as response:
             payload = json.loads(response.read().decode("utf-8"))
-        value = payload.get("value")
-        return int(value) if value is not None else None
+        total = payload.get("total") or {}
+        if not isinstance(total.get("uv"), int) or not isinstance(total.get("pv"), int):
+            raise ValueError("iCount did not return total unique visitors and page views.")
+        return payload
     except Exception as exc:
-        print(f"Warning: portfolio view counter unavailable: {exc}")
+        print(f"Warning: iCount portfolio analytics unavailable: {exc}")
         return None
 
 
@@ -537,7 +541,7 @@ def main() -> None:
             print(f"Warning: language stats unavailable for {repo.get('full_name')}: {exc}")
 
     updated_at = now.strftime("%d %b %Y · %I:%M %p IST")
-    portfolio_views = get_portfolio_views()
+    portfolio_stats = get_portfolio_stats()
     readme = README.read_text(encoding="utf-8")
     if "<!-- PROFILE:RECENT-REPOS:START -->" in readme and "<!-- PROFILE:RECENT-REPOS:END -->" in readme:
         readme = replace_section(
@@ -569,14 +573,15 @@ def main() -> None:
         make_activity_svg(recent_commit_groups, updated_at), encoding="utf-8"
     )
     (DIST / "daily-quest.svg").write_text(
-        make_daily_quest_svg(today, daily_counts, public_count, total_stars, updated_at, portfolio_views),
+        make_daily_quest_svg(today, daily_counts, public_count, total_stars, updated_at, portfolio_stats),
         encoding="utf-8",
     )
     print(
         f"Refreshed at {updated_at}: {public_count} public repositories, "
         f"{daily_counts.get(today, 0)} public commits today, "
         f"{sum(daily_counts.get(today - dt.timedelta(days=i), 0) for i in range(7))} public commits in 7 days; "
-        f"{portfolio_views if portfolio_views is not None else 'unavailable'} portfolio page views."
+        f"{(portfolio_stats or {}).get('total', {}).get('uv', 'unavailable')} unique portfolio visitors; "
+        f"{(portfolio_stats or {}).get('total', {}).get('pv', 'unavailable')} total page views."
     )
 
 
