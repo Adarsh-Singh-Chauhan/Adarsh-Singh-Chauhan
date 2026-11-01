@@ -410,10 +410,10 @@ def main() -> None:
     if not recent_rows:
         recent_rows = ["| No public repositories found | — | — | — | — |"]
     repo_markdown = (
-        "| Repository | Description | Primary language | Stars | Last pushed |\\n"
-        "|---|---|---:|---:|---:|\\n"
-        + "\\n".join(recent_rows)
-        + "\\n\\n<sub>Automatically refreshed hourly from GitHub's public repository API. Private/locked repositories are not queried or displayed.</sub>"
+        "| Repository | Description | Primary language | Stars | Last pushed |\n"
+        "|---|---|---:|---:|---:|\n"
+        + "\n".join(recent_rows)
+        + "\n\n<sub>Automatically refreshed hourly from GitHub's public repository API. Private/locked repositories are not queried or displayed.</sub>"
     )
 
     raw_events = []
@@ -452,7 +452,7 @@ def main() -> None:
             repo_markdown,
         )
     if "<!-- PROFILE:PUBLIC-ACTIVITY:START -->" in readme and "<!-- PROFILE:PUBLIC-ACTIVITY:END -->" in readme:
-        activity_markdown = "\\n".join(
+        activity_markdown = "\n".join(
             f"- **{item['date']}** — {event_label(item)}"
             for item in grouped_events
         ) or "- No recent public events returned by GitHub."
@@ -460,7 +460,7 @@ def main() -> None:
             readme,
             "<!-- PROFILE:PUBLIC-ACTIVITY:START -->",
             "<!-- PROFILE:PUBLIC-ACTIVITY:END -->",
-            activity_markdown + "\\n\\n<sub>Public events only; repeated same-day pushes are grouped by repository.</sub>",
+            activity_markdown + "\n\n<sub>Public events only; repeated same-day pushes are grouped by repository.</sub>",
         )
     if readme != README.read_text(encoding="utf-8"):
         README.write_text(readme, encoding="utf-8")
