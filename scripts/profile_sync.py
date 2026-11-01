@@ -73,28 +73,28 @@ def event_description(event: dict) -> str:
 
 def make_stats_svg(public_repos: int, stars: int, forks: int, followers: int) -> str:
     cards = [
-        ("PUBLIC REPOSITORIES", public_repos, "#22d3ee"),
+        ("PUBLIC REPOS", public_repos, "#22d3ee"),
         ("STARS EARNED", stars, "#f472b6"),
         ("COMMUNITY FORKS", forks, "#a78bfa"),
         ("FOLLOWERS", followers, "#4ade80"),
     ]
     blocks = []
     for i, (label, value, accent) in enumerate(cards):
-        x = 10 + i * 300
+        x = 10 + (i % 2) * 244
+        y = 10 + (i // 2) * 118
         blocks.append(
-            f'<g transform="translate({x},10)"><rect width="280" height="142" rx="16" fill="#0b1222" stroke="{accent}" stroke-opacity=".7" stroke-width="1.5"/>'
-            f'<circle cx="24" cy="26" r="5" fill="{accent}"/>'
-            f'<text x="42" y="31" fill="#9fb5cf" font-family="Arial,sans-serif" font-size="12" letter-spacing="1.2">{html.escape(label)}</text>'
-            f'<text x="22" y="100" fill="#f8fafc" font-family="Arial,sans-serif" font-size="48" font-weight="800">{value:,}</text>'
-            f'<path d="M22 119H258" stroke="{accent}" stroke-opacity=".4" stroke-width="3"/></g>'
+            f'<g transform="translate({x},{y})"><rect width="232" height="106" rx="13" fill="#0b1222" stroke="{accent}" stroke-opacity=".75" stroke-width="1.5"/>'
+            f'<circle cx="18" cy="22" r="4" fill="{accent}"/>'
+            f'<text x="31" y="26" fill="#9fb5cf" font-family="Arial,sans-serif" font-size="10" letter-spacing=".8">{html.escape(label)}</text>'
+            f'<text x="18" y="76" fill="#f8fafc" font-family="Arial,sans-serif" font-size="38" font-weight="800">{value:,}</text>'
+            f'<path d="M18 89H214" stroke="{accent}" stroke-opacity=".4" stroke-width="2"/></g>'
         )
     return (
-        '<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="162" viewBox="0 0 1200 162">'
-        '<rect width="1200" height="162" rx="20" fill="#070b16"/>'
+        '<svg xmlns="http://www.w3.org/2000/svg" width="500" height="234" viewBox="0 0 500 234">'
+        '<rect width="500" height="234" rx="18" fill="#070b16"/>'
         + "".join(blocks)
         + "</svg>"
     )
-
 
 def make_languages_svg(language_bytes: dict[str, int]) -> str:
     palette = {
@@ -106,37 +106,36 @@ def make_languages_svg(language_bytes: dict[str, int]) -> str:
     }
     total = sum(language_bytes.values()) or 1
     ranked = sorted(language_bytes.items(), key=lambda item: item[1], reverse=True)[:8]
-    x, y, bar_width, bar_height = 28, 84, 944, 18
+    x, y, bar_width, bar_height = 18, 68, 464, 14
     bars = []
     cursor = x
     for name, amount in ranked:
-        width = max(4, bar_width * amount / total)
+        width = max(3, bar_width * amount / total)
         color = palette.get(name, "#8b9bb4")
         bars.append(f'<rect x="{cursor:.1f}" y="{y}" width="{width:.1f}" height="{bar_height}" fill="{color}"/>')
         cursor += width
     legend = []
     for i, (name, amount) in enumerate(ranked):
-        col, row = i % 4, i // 4
-        lx, ly = 32 + col * 245, 132 + row * 34
+        col, row = i % 2, i // 2
+        lx, ly = 22 + col * 244, 111 + row * 24
         pct = amount / total * 100
         color = palette.get(name, "#8b9bb4")
         legend.append(
-            f'<circle cx="{lx}" cy="{ly - 4}" r="5" fill="{color}"/>'
-            f'<text x="{lx + 13}" y="{ly}" fill="#dbeafe" font-family="Arial,sans-serif" font-size="13">{html.escape(name)} · {pct:.1f}%</text>'
+            f'<circle cx="{lx}" cy="{ly - 4}" r="4" fill="{color}"/>'
+            f'<text x="{lx + 11}" y="{ly}" fill="#dbeafe" font-family="Arial,sans-serif" font-size="11">{html.escape(name)} · {pct:.1f}%</text>'
         )
     if not ranked:
-        legend = ['<text x="32" y="132" fill="#94a3b8" font-family="Arial,sans-serif" font-size="13">Language breakdown will appear after public repository data is available.</text>']
+        legend = ['<text x="22" y="112" fill="#94a3b8" font-family="Arial,sans-serif" font-size="11">Language data will appear after public repository data is available.</text>']
     return (
-        '<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="205" viewBox="0 0 1000 205">'
-        '<rect width="1000" height="205" rx="18" fill="#070b16" stroke="#26364e"/>'
-        '<text x="30" y="38" fill="#f8fafc" font-family="Arial,sans-serif" font-size="19" font-weight="700">LANGUAGES ACROSS PUBLIC REPOSITORIES</text>'
-        '<text x="30" y="60" fill="#8fa8c3" font-family="Arial,sans-serif" font-size="12">Calculated from source-code byte counts · updated automatically</text>'
-        f'<rect x="{x}" y="{y}" width="{bar_width}" height="{bar_height}" rx="9" fill="#1b2940"/>'
+        '<svg xmlns="http://www.w3.org/2000/svg" width="500" height="220" viewBox="0 0 500 220">'
+        '<rect width="500" height="220" rx="16" fill="#070b16" stroke="#26364e"/>'
+        '<text x="20" y="30" fill="#f8fafc" font-family="Arial,sans-serif" font-size="15" font-weight="700">MOST USED LANGUAGES</text>'
+        '<text x="20" y="49" fill="#8fa8c3" font-family="Arial,sans-serif" font-size="10">Public repositories · source byte count</text>'
+        f'<rect x="{x}" y="{y}" width="{bar_width}" height="{bar_height}" rx="7" fill="#1b2940"/>'
         + "".join(bars)
         + "".join(legend)
         + "</svg>"
     )
-
 
 def make_activity_svg(events: list[dict]) -> str:
     selected = events[:5]
