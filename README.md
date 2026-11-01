@@ -35,14 +35,14 @@ I am **Adarsh Singh Chauhan**, a Software Development Engineer focused on design
 
 | Area | Focus |
 |---|---|
-| Full-Stack Web Development | End-to-end product development, frontend/backend integration |
-| Frontend Engineering | Responsive interfaces, product UX, component-driven UI |
-| Backend Development | APIs, application logic, data and service integration |
-| AI & Machine Learning | ML workflows, model integration, intelligent applications |
-| AI Application Development | RAG, document intelligence, AI-assisted workflows |
-| Automation & Agentic AI | Workflow automation, tool-connected agents, orchestration |
-| Cybersecurity & Software Testing | Security-minded development, validation, QA and testing |
-| Cloud & Deployment | Git-based delivery, hosting, deployment and operations |
+| Full-Stack Web Developer | End-to-end product development, frontend/backend integration |
+| Frontend Engineer | Responsive interfaces, product UX, component-driven UI |
+| Backend Developer | APIs, application logic, data and service integration |
+| AI & Machine Learning Developer | ML workflows, model integration, intelligent applications |
+| AI Application Developer | RAG, document intelligence, AI-assisted workflows |
+| Automation & Agentic AI Enthusiast | Workflow automation, tool-connected agents, orchestration |
+| Cybersecurity & Software Testing Enthusiast | Security-minded development, validation, QA and testing |
+| Cloud & Deployment Enthusiast | Git-based delivery, hosting, deployment and operations |
 
 ## 🚀 Featured Projects
 
