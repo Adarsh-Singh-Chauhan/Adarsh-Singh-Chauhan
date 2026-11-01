@@ -13,6 +13,10 @@
   <a href="mailto:adarshsinghchauhan904@gmail.com"><img src="https://img.shields.io/badge/EMAIL-CONTACT-334155?style=for-the-badge&amp;logo=gmail&amp;logoColor=white" alt="Email"/></a>
 </p>
 
+<p align="center">
+  <img src="https://counterapi.com/counter.svg?ns=adarsh-engineering-portfolio-rust.vercel.app&amp;action=view&amp;key=portfolio-home&amp;readOnly=true&amp;label=PORTFOLIO%20VISITS&amp;labelColor=111827&amp;color=22d3ee" alt="Live portfolio visit counter — read only"/>
+</p>
+
 <table>
   <tr>
     <td width="28%" align="center" valign="top">
@@ -88,7 +92,7 @@ I’m **Adarsh Singh Chauhan**, a Software Development Engineer focused on build
 - Participant — National CyberShield Hackathon 2025
 - Additional learning: Microsoft Azure Computer Vision App Project
 
-## ✦ LIVE CONTRIBUTION ACTIVITY
+## ✦ PLAYER STATS & MISSION CONTROL
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/Adarsh-Singh-Chauhan/Adarsh-Singh-Chauhan/output/github-contribution-grid-snake-dark.svg" width="100%" alt="Animated GitHub contribution snake"/>
@@ -102,7 +106,7 @@ I’m **Adarsh Singh Chauhan**, a Software Development Engineer focused on build
   <img src="https://raw.githubusercontent.com/Adarsh-Singh-Chauhan/Adarsh-Singh-Chauhan/output/daily-quest.svg" width="100%" alt="Daily Developer Quest with today's public commits, public repository count, streak, weekly XP and seven-day commit activity"/>
 </p>
 
-<sub>Developer Quest refreshes hourly from public GitHub repositories. Today is calculated in Asia/Kolkata time. XP is a playful score (25 XP per public commit in the last seven days), not an official GitHub metric.</sub>
+<sub>Developer Quest refreshes hourly from public GitHub repositories. Today is calculated in Asia/Kolkata time. XP is a playful score (25 XP per public commit in the last seven days), not an official GitHub metric. Portfolio visits are counted on the live Vercel site; this README badge is read-only and does not increment the counter.</sub>
 
 ## ✦ CONNECT
 
