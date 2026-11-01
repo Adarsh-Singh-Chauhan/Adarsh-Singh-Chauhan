@@ -1,28 +1,10 @@
-<!-- Adarsh Singh Chauhan | SDE profile and cyberpunk portfolio entry point -->
+<p align="center">
+  <img src="./assets/adarsh-cyber-banner.svg" width="100%" alt="Adarsh Singh Chauhan — full-width cyberpunk software engineering banner"/>
+</p>
 
-<table>
-  <tr>
-    <td width="54%" valign="middle">
-      <img src="./assets/adarsh-cyber-banner.svg" width="100%" alt="Adarsh Singh Chauhan — Software Development Engineer"/>
-    </td>
-    <td width="20%" align="center" valign="middle">
-      <img src="https://avatars.githubusercontent.com/u/175235397?v=4" width="175" alt="Adarsh Singh Chauhan profile photograph"/>
-      <p><strong>ADARSH SINGH CHAUHAN</strong><br/>Software Development Engineer<br/>Software Engineer</p>
-    </td>
-    <td width="26%" valign="middle">
-      <h3>SECONDARY SPECIALIZATIONS</h3>
-      <p>💻 Full-Stack Web Developer<br/>
-      🖥️ Frontend Engineer<br/>
-      ⚙️ Backend Developer<br/>
-      🧠 AI &amp; Machine Learning Developer<br/>
-      🤖 AI Application Developer<br/>
-      🔄 Automation &amp; Agentic AI Enthusiast<br/>
-      🛡️ Cybersecurity &amp; Software Testing Enthusiast<br/>
-      ☁️ Cloud &amp; Deployment Enthusiast<br/>
-      ✨ <strong>Vibe Coding</strong> &amp; AI-assisted Development</p>
-    </td>
-  </tr>
-</table>
+<p align="center">
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=17&duration=2400&pause=700&color=22D3EE&center=true&vCenter=true&width=900&height=42&lines=SOFTWARE+DEVELOPMENT+ENGINEER+%7C+SOFTWARE+ENGINEER;FULL-STACK+%7C+FRONTEND+%7C+BACKEND;AI%2FML+%7C+AUTOMATION+%7C+CYBERSECURITY;VIBE+CODING+%26+AI-ASSISTED+DEVELOPMENT;PLAN+%7C+CODE+%7C+TEST+%7C+DEPLOY" alt="Animated engineering role and focus"/>
+</p>
 
 <p align="center">
   <a href="https://adarsh-singh-chauhan.github.io/Adarsh-Singh-Chauhan/"><img src="https://img.shields.io/badge/OPEN%20PORTFOLIO-ENTER%20THE%20DASHBOARD-EC4899?style=for-the-badge&amp;logo=github&amp;logoColor=white" alt="Open portfolio"/></a>
@@ -33,13 +15,26 @@
 
 <table>
   <tr>
-    <td width="66%" valign="middle">
-      <img src="./assets/adarsh-coding-workstation.svg" width="100%" alt="Vibe Coding Lab — developer coding at a neon software workstation"/>
+    <td width="28%" align="center" valign="top">
+      <img src="https://avatars.githubusercontent.com/u/175235397?v=4" width="170" alt="Adarsh Singh Chauhan profile photo"/>
+      <h3>ADARSH SINGH CHAUHAN</h3>
+      <p><strong>Software Development Engineer</strong><br/>Software Engineer</p>
+      <p><a href="https://github.com/Adarsh-Singh-Chauhan">GitHub</a> · <a href="https://www.linkedin.com/in/adarsh-singh-5189b9283/">LinkedIn</a></p>
     </td>
-    <td width="34%" valign="middle">
-      <h3>⚡ LIVE GITHUB SNAPSHOT</h3>
-      <img src="https://raw.githubusercontent.com/Adarsh-Singh-Chauhan/Adarsh-Singh-Chauhan/output/profile-stats.svg" width="100%" alt="Live public GitHub statistics"/>
-      <img src="https://raw.githubusercontent.com/Adarsh-Singh-Chauhan/Adarsh-Singh-Chauhan/output/languages.svg" width="100%" alt="Most used programming languages across public repositories"/>
+    <td width="72%" valign="top">
+      <h2>SECONDARY SPECIALIZATIONS</h2>
+      <p>
+        💻 <strong>Full-Stack Web Developer</strong> &nbsp; · &nbsp;
+        🖥️ <strong>Frontend Engineer</strong> &nbsp; · &nbsp;
+        ⚙️ <strong>Backend Developer</strong><br/>
+        🧠 <strong>AI &amp; Machine Learning Developer</strong> &nbsp; · &nbsp;
+        🤖 <strong>AI Application Developer</strong><br/>
+        🔄 <strong>Automation &amp; Agentic AI Enthusiast</strong><br/>
+        🛡️ <strong>Cybersecurity &amp; Software Testing Enthusiast</strong><br/>
+        ☁️ <strong>Cloud &amp; Deployment Enthusiast</strong> &nbsp; · &nbsp;
+        ✨ <strong>Vibe Coding &amp; AI-assisted Development</strong>
+      </p>
+      <p><strong>Focus:</strong> Building real-world, scalable and AI-powered products — from architecture and implementation to testing and deployment.</p>
     </td>
   </tr>
 </table>
