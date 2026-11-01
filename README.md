@@ -98,6 +98,12 @@ I’m **Adarsh Singh Chauhan**, a Software Development Engineer focused on build
   <img src="https://raw.githubusercontent.com/Adarsh-Singh-Chauhan/Adarsh-Singh-Chauhan/output/public-activity.svg" width="100%" alt="Recent public GitHub activity"/>
 </p>
 
+<p align="center">
+  <img src="https://raw.githubusercontent.com/Adarsh-Singh-Chauhan/Adarsh-Singh-Chauhan/output/daily-quest.svg" width="100%" alt="Daily Developer Quest with today's public commits, public repository count, streak, weekly XP and seven-day commit activity"/>
+</p>
+
+<sub>Developer Quest refreshes hourly from public GitHub repositories. Today is calculated in Asia/Kolkata time. XP is a playful score (25 XP per public commit in the last seven days), not an official GitHub metric.</sub>
+
 ## ✦ CONNECT
 
 <p align="center">
