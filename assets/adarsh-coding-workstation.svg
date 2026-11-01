@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1600" height="500" viewBox="0 0 1600 500" role="img" aria-labelledby="title desc">
+<title id="title">Adarsh coding — Vibe Coding Lab</title>
+<desc id="desc">An animated neon illustration of Adarsh at a software development workstation, with his actual profile photo used for the developer's face, multiple code monitors and a gaming-inspired cyber workspace.</desc>
+<defs>
+ <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#040711"/><stop offset=".48" stop-color="#101027"/><stop offset="1" stop-color="#071a2b"/></linearGradient>
+ <linearGradient id="pink" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#ec4899"/><stop offset="1" stop-color="#a855f7"/></linearGradient>
+ <linearGradient id="cyan" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#22d3ee"/><stop offset="1" stop-color="#3b82f6"/></linearGradient>
+ <radialGradient id="roomGlow"><stop stop-color="#7c3aed" stop-opacity=".34"/><stop offset="1" stop-color="#050711" stop-opacity="0"/></radialGradient>
+ <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse"><path d="M30 0H0V30" fill="none" stroke="#6b8ba8" stroke-opacity=".12"/></pattern>
+ <clipPath id="face"><circle cx="804" cy="188" r="92"/></clipPath>
+ <filter id="glow"><feGaussianBlur stdDeviation="6" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+ <style>
+  .ui{font-family:Inter,Segoe UI,Arial,sans-serif}.mono{font-family:ui-monospace,SFMono-Regular,Consolas,monospace}
+  .blink{animation:blink 1.3s steps(2,start) infinite}.pulse{animation:pulse 2.6s ease-in-out infinite}
+  .scan{animation:scan 6s linear infinite}.dash{stroke-dasharray:9 12;animation:dash 12s linear infinite}
+  @keyframes blink{to{visibility:hidden}}@keyframes pulse{0%,100%{opacity:.55}50%{opacity:1}}
+  @keyframes scan{0%{transform:translateY(-20px)}100%{transform:translateY(550px)}}
+  @keyframes dash{to{stroke-dashoffset:-250}}
+ </style>
+</defs>
+<rect width="1600" height="500" rx="22" fill="url(#bg)"/><rect width="1600" height="500" rx="22" fill="url(#grid)"/>
+<ellipse cx="800" cy="252" rx="610" ry="330" fill="url(#roomGlow)"/>
+<path d="M0 70H1600M0 462H1600" stroke="#334155" stroke-opacity=".6"/>
+<g class="ui" fill="#f8fafc"><text x="56" y="46" font-size="16" font-weight="800" letter-spacing="2">ASC // VIBE CODING LAB</text><text x="1540" y="46" font-size="12" text-anchor="end" fill="#f9a8d4" letter-spacing="2">PLAN  /  CODE  /  BUILD  /  SHIP</text></g>
+<g transform="translate(70 110)">
+ <rect width="405" height="242" rx="15" fill="#07111e" stroke="#22d3ee" stroke-opacity=".8" stroke-width="2" filter="url(#glow)"/>
+ <rect x="14" y="14" width="377" height="30" rx="7" fill="#101d31"/>
+ <circle cx="30" cy="29" r="4" fill="#fb7185"/><circle cx="46" cy="29" r="4" fill="#fbbf24"/><circle cx="62" cy="29" r="4" fill="#34d399"/>
+ <text x="84" y="33" class="mono" font-size="11" fill="#91a7bd">app / engineering.tsx</text>
+ <g class="mono" font-size="13">
+  <text x="26" y="76" fill="#c084fc">01  const</text><text x="98" y="76" fill="#67e8f9"> buildProduct</text><text x="212" y="76" fill="#f8fafc"> = async () =&gt; {</text>
+  <text x="26" y="106" fill="#94a3b8">02</text><text x="60" y="106" fill="#f9a8d4">  await</text><text x="116" y="106" fill="#86efac"> understand(requirements);</text>
+  <text x="26" y="136" fill="#94a3b8">03</text><text x="60" y="136" fill="#f9a8d4">  await</text><text x="116" y="136" fill="#67e8f9"> design(architecture);</text>
+  <text x="26" y="166" fill="#94a3b8">04</text><text x="60" y="166" fill="#f9a8d4">  await</text><text x="116" y="166" fill="#86efac"> code.withPurpose();</text>
+  <text x="26" y="196" fill="#94a3b8">05</text><text x="60" y="196" fill="#f9a8d4">  await</text><text x="116" y="196" fill="#67e8f9"> testAndShip();</text>
+  <text x="26" y="224" fill="#c084fc">06  return</text><text x="104" y="224" fill="#f8fafc"> software;</text><text x="188" y="224" fill="#c084fc"> };</text>
+ </g>
+</g>
+<g transform="translate(1126 110)">
+ <rect width="405" height="242" rx="15" fill="#07111e" stroke="#d946ef" stroke-opacity=".8" stroke-width="2" filter="url(#glow)"/>
+ <rect x="14" y="14" width="377" height="30" rx="7" fill="#19132a"/>
+ <circle cx="30" cy="29" r="4" fill="#fb7185"/><circle cx="46" cy="29" r="4" fill="#fbbf24"/><circle cx="62" cy="29" r="4" fill="#34d399"/>
+ <text x="84" y="33" class="mono" font-size="11" fill="#c4b5fd">system / live-telemetry</text>
+ <g transform="translate(24 72)">
+  <path d="M0 130H350M0 96H350M0 62H350M0 28H350" stroke="#34445e" stroke-opacity=".6"/>
+  <path d="M0 135L35 112L75 116L115 58L155 77L195 39L235 55L280 17L335 28" fill="none" stroke="url(#cyan)" stroke-width="4" class="dash"/>
+  <path d="M0 135L35 112L75 116L115 58L155 77L195 39L235 55L280 17L335 28V135Z" fill="#22d3ee" opacity=".08"/>
+  <circle cx="280" cy="17" r="7" fill="#f472b6" class="pulse"/>
+  <text x="0" y="161" class="mono" font-size="11" fill="#9fb5ce">API  /  AI PIPELINE  /  DEPLOYMENT</text>
+ </g>
+</g>
+<!-- Chair and seated developer -->
+<path d="M690 307C670 286 660 253 674 225C695 184 742 165 804 165C870 165 914 189 933 232L948 368L905 438H694L660 368Z" fill="#101b34" stroke="#7c3aed" stroke-width="3"/>
+<path d="M710 285C733 259 762 246 804 246C850 246 885 263 908 292L940 439H665Z" fill="#0a152a" stroke="#fb277b" stroke-opacity=".75" stroke-width="3"/>
+<!-- Hoodie shoulders and arms -->
+<path d="M690 292C633 308 587 346 571 412L604 447H1007L1032 412C1014 345 970 308 914 292C884 319 847 335 804 335C759 335 721 318 690 292Z" fill="#111d35" stroke="#22d3ee" stroke-opacity=".8" stroke-width="3"/>
+<path d="M690 327C649 345 629 380 623 419L703 432L748 373Z" fill="#162544" stroke="#ec4899" stroke-opacity=".55" stroke-width="2"/>
+<path d="M918 327C959 345 979 380 985 419L905 432L860 373Z" fill="#162544" stroke="#ec4899" stroke-opacity=".55" stroke-width="2"/>
+<!-- Actual user face in a lit portrait window -->
+<circle cx="804" cy="188" r="108" fill="#09101f" stroke="url(#pink)" stroke-width="7" filter="url(#glow)" class="pulse"/>
+<image href="https://avatars.githubusercontent.com/u/175235397?v=4" xlink:href="https://avatars.githubusercontent.com/u/175235397?v=4" x="712" y="96" width="184" height="184" preserveAspectRatio="xMidYMid slice" clip-path="url(#face)"/>
+<circle cx="804" cy="188" r="92" fill="none" stroke="#a5f3fc" stroke-opacity=".6" stroke-width="2"/>
+<!-- Developer arms reaching toward keyboard -->
+<path d="M634 393C668 374 697 375 730 399L768 427L740 451L668 428Z" fill="#172641" stroke="#22d3ee" stroke-opacity=".75" stroke-width="3"/>
+<path d="M971 393C937 374 908 375 875 399L837 427L865 451L937 428Z" fill="#172641" stroke="#22d3ee" stroke-opacity=".75" stroke-width="3"/>
+<path d="M731 421L773 444M877 421L835 444" stroke="#fbcfe8" stroke-width="13" stroke-linecap="round"/>
+<!-- Desk and keyboard -->
+<path d="M0 452H1600" stroke="#22d3ee" stroke-width="4" filter="url(#glow)"/>
+<path d="M475 442H1125L1180 500H420Z" fill="#0b1426" stroke="#273b5c" stroke-width="3"/>
+<path d="M635 455H965L992 476H608Z" fill="#101e34" stroke="#22d3ee" stroke-opacity=".8"/>
+<g stroke="#a5f3fc" stroke-opacity=".65" stroke-width="2"><path d="M652 463H948M644 469H956M668 457V475M698 457V475M728 457V475M758 457V475M788 457V475M818 457V475M848 457V475M878 457V475M908 457V475M938 457V475"/></g>
+<g transform="translate(515 396)"><rect width="80" height="48" rx="7" fill="#0a1222" stroke="#fb277b" stroke-width="2"/><text x="40" y="30" text-anchor="middle" class="mono" fill="#f9a8d4" font-size="15">&lt;/&gt;</text></g>
+<g class="ui"><text x="78" y="405" font-size="17" font-weight="800" fill="#f9a8d4">VIBE CODING</text><text x="78" y="431" font-size="13" fill="#9fb5ce">AI-assisted ideas. Human engineering.</text><text x="1127" y="405" font-size="17" font-weight="800" fill="#67e8f9">SOFTWARE IN MOTION</text><text x="1127" y="431" font-size="13" fill="#9fb5ce">Design · Develop · Validate · Deploy</text></g>
+<g class="mono" font-size="10" fill="#94a3b8"><text x="35" y="485">SESSION_01 / FRONTEND + BACKEND</text><text x="1565" y="485" text-anchor="end">AI · AUTOMATION · SYSTEMS</text></g>
+<rect x="0" y="0" width="1600" height="500" rx="22" fill="none" stroke="#79306f" stroke-width="2" stroke-opacity=".7"/>
+<rect x="0" y="0" width="1600" height="20" fill="#22d3ee" opacity=".035" class="scan"/>
+</svg>
