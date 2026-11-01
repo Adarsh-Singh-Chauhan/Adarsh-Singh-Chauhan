@@ -292,3 +292,17 @@ button{font:inherit}
  .work-project-note{gap:5px}
  .work-project-note span{width:100%}
 }
+
+.recent-repo-feed{margin-top:14px;border:1px solid rgba(50,217,245,.28);border-radius:8px;padding:12px;background:rgba(4,11,24,.5)}
+.recent-feed-heading{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:8px}
+.recent-feed-heading small{display:block;color:#6f89a8;font:8px Orbitron,sans-serif;letter-spacing:1.2px}
+.recent-feed-heading h3{font:700 12px Orbitron,sans-serif;margin:5px 0 0;color:#eaf4ff}
+.recent-feed-heading a{font:700 8px Orbitron,sans-serif;color:var(--cyan);white-space:nowrap}
+.latest-repo-list{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.repo-feed-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 8px;padding:9px;border:1px solid rgba(80,103,145,.45);border-radius:6px;background:rgba(15,26,46,.6);transition:.2s}
+.repo-feed-row:hover{border-color:var(--pink);transform:translateY(-2px)}
+.repo-feed-name{color:#e1edff;font:700 10px Rajdhani,sans-serif;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.repo-feed-language{color:#8ca9c7;font:9px Rajdhani,sans-serif;text-align:right}
+.repo-feed-stars{color:#f5d180;font:9px Rajdhani,sans-serif}
+.repo-feed-date{color:#788eaa;font:9px Rajdhani,sans-serif;text-align:right}
+@media(max-width:760px){.latest-repo-list{grid-template-columns:1fr}}
