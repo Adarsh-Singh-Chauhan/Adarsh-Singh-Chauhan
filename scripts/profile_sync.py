@@ -227,20 +227,25 @@ def main() -> None:
         except Exception:
             continue
 
+    # The main README is now a compact entry point to the interactive portfolio.
+    # Keep its dynamic sections optional for backward compatibility with older layouts.
     readme = README.read_text(encoding="utf-8")
-    readme = replace_section(
-        readme,
-        "<!-- PROFILE:RECENT-REPOS:START -->",
-        "<!-- PROFILE:RECENT-REPOS:END -->",
-        repo_markdown,
-    )
-    readme = replace_section(
-        readme,
-        "<!-- PROFILE:PUBLIC-ACTIVITY:START -->",
-        "<!-- PROFILE:PUBLIC-ACTIVITY:END -->",
-        activity_markdown,
-    )
-    README.write_text(readme, encoding="utf-8")
+    if "<!-- PROFILE:RECENT-REPOS:START -->" in readme and "<!-- PROFILE:RECENT-REPOS:END -->" in readme:
+        readme = replace_section(
+            readme,
+            "<!-- PROFILE:RECENT-REPOS:START -->",
+            "<!-- PROFILE:RECENT-REPOS:END -->",
+            repo_markdown,
+        )
+    if "<!-- PROFILE:PUBLIC-ACTIVITY:START -->" in readme and "<!-- PROFILE:PUBLIC-ACTIVITY:END -->" in readme:
+        readme = replace_section(
+            readme,
+            "<!-- PROFILE:PUBLIC-ACTIVITY:START -->",
+            "<!-- PROFILE:PUBLIC-ACTIVITY:END -->",
+            activity_markdown,
+        )
+    if readme != README.read_text(encoding="utf-8"):
+        README.write_text(readme, encoding="utf-8")
 
     (DIST / "profile-stats.svg").write_text(
         make_stats_svg(public_count, total_stars, total_forks, followers), encoding="utf-8"
