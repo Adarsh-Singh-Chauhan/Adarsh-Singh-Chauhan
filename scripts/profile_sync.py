@@ -438,7 +438,7 @@ def make_daily_quest_svg(
         + "".join(blocks)
         + '<path d="M24 211H976" stroke="#2b3b56" stroke-width="1"/>'
         + '<text x="30" y="239" fill="#dceaff" font-family="Arial,sans-serif" font-size="11" font-weight="800" letter-spacing=".7">7-DAY ACTIVITY MAP</text>'
-        + '<text x="970" y="239" text-anchor="end" fill="#91a6c4" font-family="Arial,sans-serif" font-size="9">TODAY'S MISSION · 5 PUBLIC COMMITS</text>'
+        + "<text x=\"970\" y=\"239\" text-anchor=\"end\" fill=\"#91a6c4\" font-family=\"Arial,sans-serif\" font-size=\"9\">TODAY'S MISSION · 5 PUBLIC COMMITS</text>"
         + '<path d="M54 273H946" stroke="#273b59" stroke-width="1" stroke-dasharray="4 6"/>'
         + "".join(bars)
         + '<rect x="54" y="403" width="892" height="8" rx="4" fill="#18263d"/>'
