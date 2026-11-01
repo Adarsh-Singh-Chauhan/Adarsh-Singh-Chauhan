@@ -3,7 +3,7 @@ name: Refresh Animated GitHub Profile
 on:
   workflow_dispatch:
   schedule:
-    - cron: "17 */6 * * *"
+    - cron: "17 * * * *"
   push:
     branches:
       - main
@@ -29,7 +29,9 @@ jobs:
         with:
           python-version: "3.x"
 
-      - name: Refresh public repositories, activity and stats
+      - name: Refresh public repositories, daily commits, activity and game stats
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: python scripts/profile_sync.py
 
       - name: Generate animated contribution snake
