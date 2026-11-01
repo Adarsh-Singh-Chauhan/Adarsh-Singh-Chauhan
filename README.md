@@ -4,7 +4,7 @@
 -->
 
 <p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=0:050816,35:111b35,70:073b4c,100:050816&height=220&section=header&text=ADARSH%20SINGH%20CHAUHAN&fontSize=38&fontColor=ffffff&fontAlignY=36&desc=SOFTWARE%20DEVELOPMENT%20ENGINEER%20%7C%20SOFTWARE%20ENGINEER&descAlignY=58&descSize=15&animation=fadeIn" width="100%" alt="Adarsh Singh Chauhan — Software Engineer banner" />
+  <img src="./assets/adarsh-cyber-banner.svg" width="100%" alt="Adarsh Singh Chauhan — animated cyber engineering banner" />
 </p>
 
 <p align="center">
