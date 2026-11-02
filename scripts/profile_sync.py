@@ -454,6 +454,40 @@ def make_daily_quest_svg(
     )
 
 
+def make_portfolio_views_svg(portfolio_stats: dict | None) -> str:
+    """Render a local SVG badge so the README preview never depends on a third-party image endpoint."""
+    total = (portfolio_stats or {}).get("total") or {}
+    page_views = total.get("pv")
+    unique_visitors = total.get("uv")
+    if isinstance(page_views, int) and isinstance(unique_visitors, int):
+        value = f"{page_views:,}"
+        detail = f"{unique_visitors:,} UNIQUE VISITORS"
+        status = "LIVE COUNTS"
+        accent = "#47e6a3"
+    else:
+        value = "INITIALIZING"
+        detail = "OPEN THE PORTFOLIO TO START TRACKING"
+        status = "AWAITING FIRST VISIT"
+        accent = "#ffd166"
+
+    return (
+        '<svg xmlns="http://www.w3.org/2000/svg" width="560" height="68" viewBox="0 0 560 68" role="img" aria-labelledby="title desc">'
+        '<title id="title">Portfolio page views</title>'
+        '<desc id="desc">Portfolio visitor counter, refreshed by GitHub Actions.</desc>'
+        '<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">'
+        '<stop stop-color="#10172b"/><stop offset="1" stop-color="#17112a"/></linearGradient></defs>'
+        '<rect x="1" y="1" width="558" height="66" rx="12" fill="url(#bg)" stroke="#344762"/>'
+        '<rect x="13" y="14" width="4" height="40" rx="2" fill="#32d9f5"/>'
+        '<text x="30" y="28" fill="#91a6c4" font-family="Arial,sans-serif" font-size="10" font-weight="700" letter-spacing="1.2">LIVE PORTFOLIO PAGE VIEWS</text>'
+        f'<text x="30" y="51" fill="#f7fbff" font-family="Arial,sans-serif" font-size="19" font-weight="800">{html.escape(value)}</text>'
+        f'<text x="175" y="49" fill="{accent}" font-family="Arial,sans-serif" font-size="9" font-weight="700" letter-spacing=".5">{html.escape(detail)}</text>'
+        f'<circle cx="423" cy="28" r="3" fill="{accent}"/>'
+        f'<text x="435" y="31" fill="{accent}" font-family="Arial,sans-serif" font-size="8" font-weight="700">{html.escape(status)}</text>'
+        '<text x="545" y="57" text-anchor="end" fill="#647d9a" font-family="Arial,sans-serif" font-size="7.5">HOURLY SYNC · ASIA/KOLKATA</text>'
+        '</svg>'
+    )
+
+
 def get_portfolio_stats() -> dict | None:
     """Read public iCount analytics for the portfolio without incrementing visits."""
     url = "https://icount.kr/api.php?id=adarsh-singh-chauhan.github.io"
@@ -579,6 +613,9 @@ def main() -> None:
     (DIST / "daily-quest.svg").write_text(
         make_daily_quest_svg(today, daily_counts, public_count, total_stars, updated_at, portfolio_stats),
         encoding="utf-8",
+    )
+    (DIST / "portfolio-views.svg").write_text(
+        make_portfolio_views_svg(portfolio_stats), encoding="utf-8"
     )
     print(
         f"Refreshed at {updated_at}: {public_count} public repositories, "
