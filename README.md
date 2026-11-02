@@ -7,14 +7,14 @@
 </p>
 
 <p align="center">
-  <a href="https://adarsh-singh-chauhan.github.io/Adarsh-Singh-Chauhan/"><img src="https://img.shields.io/badge/OPEN%20PORTFOLIO-ENTER%20THE%20DASHBOARD-EC4899?style=for-the-badge&amp;logo=github&amp;logoColor=white" alt="Open portfolio"/></a>
+  <a href="https://adarsh-engineering-portfolio-rust.vercel.app/" target="_blank" rel="noopener noreferrer"><img src="https://img.shields.io/badge/OPEN%20PORTFOLIO-ENTER%20THE%20DASHBOARD-EC4899?style=for-the-badge&amp;logo=vercel&amp;logoColor=white" alt="Open live portfolio"/></a>
   <a href="https://adarsh-singh-chauhan.github.io/Adarsh-Singh-Chauhan/resume.html"><img src="https://img.shields.io/badge/RESUME-VIEW%20%2F%20PRINT-0EA5E9?style=for-the-badge&amp;logo=adobeacrobatreader&amp;logoColor=white" alt="View resume"/></a>
   <a href="https://www.linkedin.com/in/adarsh-singh-5189b9283/"><img src="https://img.shields.io/badge/LINKEDIN-CONNECT-0A66C2?style=for-the-badge&amp;logo=linkedin&amp;logoColor=white" alt="LinkedIn"/></a>
   <a href="mailto:adarshsinghchauhan904@gmail.com"><img src="https://img.shields.io/badge/EMAIL-CONTACT-334155?style=for-the-badge&amp;logo=gmail&amp;logoColor=white" alt="Email"/></a>
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Adarsh-Singh-Chauhan/Adarsh-Singh-Chauhan/output/portfolio-views.svg" width="420" alt="Live portfolio page-view counter, refreshed hourly"/>
+  <a href="https://adarsh-engineering-portfolio-rust.vercel.app/" target="_blank" rel="noopener noreferrer"><img src="https://raw.githubusercontent.com/Adarsh-Singh-Chauhan/Adarsh-Singh-Chauhan/output/portfolio-views.svg" width="420" alt="Open live portfolio — page-view counter, refreshed hourly"/></a>
 </p>
 
 <table>
@@ -113,7 +113,7 @@ I’m **Adarsh Singh Chauhan**, a Software Development Engineer focused on build
 <p align="center">
   <a href="https://github.com/Adarsh-Singh-Chauhan">GitHub</a> ·
   <a href="https://www.linkedin.com/in/adarsh-singh-5189b9283/">LinkedIn</a> ·
-  <a href="https://adarsh-singh-chauhan.github.io/Adarsh-Singh-Chauhan/">Portfolio</a> ·
+  <a href="https://adarsh-engineering-portfolio-rust.vercel.app/" target="_blank" rel="noopener noreferrer">Portfolio</a> ·
   <a href="mailto:adarshsinghchauhan904@gmail.com">Email</a> ·
   <a href="https://adarsh-singh-chauhan.github.io/Adarsh-Singh-Chauhan/resume.html">Resume</a>
 </p>
