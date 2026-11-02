@@ -456,7 +456,7 @@ def make_daily_quest_svg(
 
 def get_portfolio_stats() -> dict | None:
     """Read public iCount analytics for the portfolio without incrementing visits."""
-    url = "https://icount.kr/api.php?id=adarsh-engineering-portfolio-rust.vercel.app"
+    url = "https://icount.kr/api.php?id=adarsh-singh-chauhan.github.io"
     try:
         request = urllib.request.Request(
             url,
