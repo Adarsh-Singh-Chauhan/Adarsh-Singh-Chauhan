@@ -174,7 +174,7 @@
   </a>
 </p>
 
-<sub>These animated panels stay inside this GitHub profile when clicked. They refresh from public GitHub activity; private repositories and private activity are excluded. Developer Quest XP is a playful score (25 XP per public commit in the last seven days), not an official GitHub metric.</sub>
+<sub>Commit and contribution panels use public GitHub activity only. Portfolio visitor and page-view metrics use Vercel Web Analytics over a rolling 30-day window. Developer Quest XP is a playful score (25 XP per public commit in the last seven days), not an official GitHub metric. Private GitHub repositories and activity are excluded.</sub>
 
 ## LET'S CONNECT
 
