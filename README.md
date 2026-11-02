@@ -14,7 +14,7 @@
 </p>
 
 <p align="center">
-  <img src="https://icount.kr/api.php?id=adarsh-engineering-portfolio-rust.vercel.app&amp;format=badge" alt="Live portfolio page-view counter"/>
+  <img src="https://icount.kr/count.php?id=adarsh-singh-chauhan.github.io&amp;format=badge" alt="Live portfolio page-view counter"/>
 </p>
 
 <table>
