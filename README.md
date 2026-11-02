@@ -19,8 +19,8 @@
 </p>
 
 <p align="center">
-  <a href="https://adarsh-engineering-portfolio-rust.vercel.app/">
-    <img src="https://raw.githubusercontent.com/Adarsh-Singh-Chauhan/Adarsh-Singh-Chauhan/output/portfolio-views.svg" width="520" alt="Live portfolio views — open the live portfolio"/>
+  <a href="#user-content-github-mission-control">
+    <img src="https://raw.githubusercontent.com/Adarsh-Singh-Chauhan/Adarsh-Singh-Chauhan/output/portfolio-views.svg" width="520" alt="Live portfolio views — refreshed hourly"/>
   </a>
 </p>
 
