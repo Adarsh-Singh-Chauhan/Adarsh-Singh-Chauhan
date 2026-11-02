@@ -507,40 +507,58 @@ def make_portfolio_views_svg(portfolio_stats: dict | None) -> str:
 
 
 def get_portfolio_stats() -> dict | None:
-    """Read public iCount analytics for the portfolio without incrementing visits."""
-    url = "https://icount.kr/api.php?id=adarsh-engineering-portfolio-rust.vercel.app&format=json"
-    try:
-        request = urllib.request.Request(
-            url,
-            headers={"Accept": "application/json", "User-Agent": "Adarsh-Portfolio-Stats"},
-        )
-        with urllib.request.urlopen(request, timeout=15) as response:
-            body = response.read().decode("utf-8").strip()
-        if not body:
-            print("iCount has no stats record yet; waiting for the first human portfolio visit.")
-            return None
-        payload = json.loads(body)
-        if not isinstance(payload, dict):
-            raise ValueError("iCount returned a non-object JSON payload.")
-        total = payload.get("total") or {}
-        def numeric_count(value):
-            if isinstance(value, bool):
-                return None
-            if isinstance(value, int):
-                return value if value >= 0 else None
-            if isinstance(value, str) and value.replace(",", "").strip().isdigit():
-                return int(value.replace(",", "").strip())
-            return None
-        uv = numeric_count(total.get("uv"))
-        pv = numeric_count(total.get("pv"))
-        if uv is None or pv is None:
-            raise ValueError("iCount JSON is valid but total.uv / total.pv are not available yet.")
-        payload["total"] = {**total, "uv": uv, "pv": pv}
-        return payload
-    except Exception as exc:
-        print(f"Warning: iCount portfolio analytics unavailable: {exc}")
-        return None
+    """Read public iCount analytics for the live Vercel portfolio without incrementing visits."""
+    base_url = "https://icount.kr/api.php?id=adarsh-engineering-portfolio-rust.vercel.app"
+    endpoints = [base_url + "&format=json", base_url]
+    for url in endpoints:
+        try:
+            request = urllib.request.Request(
+                url,
+                headers={
+                    "Accept": "application/json",
+                    "Cache-Control": "no-cache",
+                    "User-Agent": "Mozilla/5.0 (compatible; AdarshPortfolioStats/1.0)",
+                },
+            )
+            with urllib.request.urlopen(request, timeout=15) as response:
+                status = getattr(response, "status", 200)
+                content_type = response.headers.get("Content-Type", "unknown")
+                body = response.read().decode("utf-8", errors="replace").strip()
+            print(f"iCount stats probe: HTTP {status}; content-type={content_type}; bytes={len(body)}")
+            if not body:
+                print("iCount returned an empty response; portfolio visits may not have synced yet.")
+                continue
+            try:
+                payload = json.loads(body)
+            except json.JSONDecodeError:
+                preview = body[:180].replace("\n", " ").replace("\r", " ")
+                print(f"iCount returned non-JSON content: {preview}")
+                continue
+            if not isinstance(payload, dict):
+                print("iCount returned JSON in an unexpected shape.")
+                continue
+            total = payload.get("total") or {}
 
+            def numeric_count(value):
+                if isinstance(value, bool):
+                    return None
+                if isinstance(value, int):
+                    return value if value >= 0 else None
+                if isinstance(value, str) and value.replace(",", "").strip().isdigit():
+                    return int(value.replace(",", "").strip())
+                return None
+
+            uv = numeric_count(total.get("uv"))
+            pv = numeric_count(total.get("pv"))
+            if uv is None or pv is None:
+                print("iCount JSON did not include numeric total.uv and total.pv fields.")
+                continue
+            payload["total"] = {**total, "uv": uv, "pv": pv}
+            return payload
+        except Exception as exc:
+            print(f"iCount endpoint unavailable ({url.split('?')[0]}): {exc}")
+    print("Portfolio traffic remains pending; no fabricated visitor totals will be displayed.")
+    return None
 
 def main() -> None:
     DIST.mkdir(parents=True, exist_ok=True)
