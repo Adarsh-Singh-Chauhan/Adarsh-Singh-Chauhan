@@ -1,11 +1,13 @@
 <p align="center">
-  <a href="https://adarsh-engineering-portfolio-rust.vercel.app/">
+  <a href="#user-content-github-mission-control">
     <img src="./assets/adarsh-cyber-banner.svg" width="100%" alt="Adarsh Singh Chauhan — Software Development Engineer"/>
   </a>
 </p>
 
 <p align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=17&duration=2400&pause=700&color=22D3EE&center=true&vCenter=true&width=900&height=42&lines=SOFTWARE+DEVELOPMENT+ENGINEER;FULL-STACK+%7C+FRONTEND+%7C+BACKEND;AI%2FML+%7C+AUTOMATION+%7C+CYBERSECURITY;PLAN+%7C+CODE+%7C+TEST+%7C+DEPLOY" alt="Animated software engineering roles and focus"/>
+  <a href="#user-content-github-mission-control">
+    <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=17&duration=2400&pause=700&color=22D3EE&center=true&vCenter=true&width=900&height=42&lines=SOFTWARE+DEVELOPMENT+ENGINEER;FULL-STACK+%7C+FRONTEND+%7C+BACKEND;AI%2FML+%7C+AUTOMATION+%7C+CYBERSECURITY;PLAN+%7C+CODE+%7C+TEST+%7C+DEPLOY" alt="Animated software engineering roles and focus"/>
+  </a>
 </p>
 
 <p align="center">
@@ -155,18 +157,24 @@
 ## GITHUB MISSION CONTROL
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Adarsh-Singh-Chauhan/Adarsh-Singh-Chauhan/output/daily-quest.svg" width="100%" alt="Developer Quest — public commits, repository activity, streak and weekly XP"/>
+  <a href="#user-content-github-mission-control">
+    <img src="https://raw.githubusercontent.com/Adarsh-Singh-Chauhan/Adarsh-Singh-Chauhan/output/daily-quest.svg" width="100%" alt="Developer Quest — public commits, repository activity, streak and weekly XP"/>
+  </a>
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Adarsh-Singh-Chauhan/Adarsh-Singh-Chauhan/output/public-activity.svg" width="100%" alt="Recent public GitHub commit activity"/>
+  <a href="#user-content-github-mission-control">
+    <img src="https://raw.githubusercontent.com/Adarsh-Singh-Chauhan/Adarsh-Singh-Chauhan/output/public-activity.svg" width="100%" alt="Recent public GitHub commit activity"/>
+  </a>
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Adarsh-Singh-Chauhan/Adarsh-Singh-Chauhan/output/github-contribution-grid-snake-dark.svg" width="100%" alt="Animated GitHub contribution activity"/>
+  <a href="#user-content-github-mission-control">
+    <img src="https://raw.githubusercontent.com/Adarsh-Singh-Chauhan/Adarsh-Singh-Chauhan/output/github-contribution-grid-snake-dark.svg" width="100%" alt="Animated GitHub contribution activity"/>
+  </a>
 </p>
 
-<sub>Activity panels use public GitHub data only. Developer Quest XP is a playful score (25 XP per public commit in the last seven days), not an official GitHub metric. Private repositories and private activity are excluded.</sub>
+<sub>These animated panels stay inside this GitHub profile when clicked. They refresh from public GitHub activity; private repositories and private activity are excluded. Developer Quest XP is a playful score (25 XP per public commit in the last seven days), not an official GitHub metric.</sub>
 
 ## LET'S CONNECT
 
