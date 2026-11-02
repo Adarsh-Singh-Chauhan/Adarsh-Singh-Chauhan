@@ -302,25 +302,29 @@ def make_activity_svg(items: list[dict], updated_at: str) -> str:
     height = 112 + max(1, len(selected)) * 58
     rows = []
     accents = ["#27e7ff", "#ff4fb7", "#b58cff", "#4ade80", "#f5c451", "#60a5fa", "#fb7185"]
+    pill_x, pill_width = 820, 120
     for i, item in enumerate(selected):
         y = 82 + i * 58
         accent = accents[i % len(accents)]
         repo_name = item["repo"]
         short_name = repo_name.split("/")[-1]
-        count = int(item.get("count", 1))
-        message = safe_text(item.get("message"), 74)
+        count = max(0, int(item.get("count", 1)))
+        display_count = f"{count:,}"
+        message = safe_text(item.get("message"), 68)
         date = item["date"]
+        label = f"{display_count} COMMIT{'S' if count != 1 else ''}"
+        font_size = 10 if len(label) > 13 else 11
         rows.append(
             f'<g transform="translate(24,{y})">'
             f'<rect width="952" height="48" rx="10" fill="#0d1729" stroke="#344762" stroke-opacity=".72"/>'
             f'<rect width="4" height="48" rx="2" fill="{accent}"/>'
             f'<circle cx="24" cy="24" r="8" fill="{accent}" fill-opacity=".13" stroke="{accent}" stroke-opacity=".85"/>'
             f'<circle cx="24" cy="24" r="3" fill="{accent}"/>'
-            f'<text x="44" y="20" fill="#f4f8ff" font-family="Arial,sans-serif" font-size="13" font-weight="700">{html.escape(safe_text(short_name, 34))}</text>'
-            f'<text x="44" y="36" fill="#849bb7" font-family="Arial,sans-serif" font-size="9.5">{html.escape(message)}</text>'
-            f'<text x="730" y="20" fill="#7c91ad" font-family="Arial,sans-serif" font-size="9">{html.escape(date)} · IST</text>'
-            f'<rect x="858" y="9" width="78" height="30" rx="8" fill="{accent}" fill-opacity=".12" stroke="{accent}" stroke-opacity=".62"/>'
-            f'<text x="897" y="28" text-anchor="middle" fill="{accent}" font-family="Arial,sans-serif" font-size="11" font-weight="800">{count} COMMIT{"S" if count != 1 else ""}</text>'
+            f'<text x="44" y="20" fill="#f4f8ff" font-family="Arial,sans-serif" font-size="13" font-weight="700">{html.escape(safe_text(short_name, 32))}</text>'
+            f'<text x="44" y="36" fill="#849bb7" font-family="Arial,sans-serif" font-size="9.2">{html.escape(message)}</text>'
+            f'<text x="690" y="20" fill="#7c91ad" font-family="Arial,sans-serif" font-size="9">{html.escape(date)} · IST</text>'
+            f'<rect x="{pill_x}" y="8" width="{pill_width}" height="32" rx="9" fill="{accent}" fill-opacity=".12" stroke="{accent}" stroke-opacity=".7"/>'
+            f'<text x="{pill_x + pill_width / 2}" y="28" text-anchor="middle" dominant-baseline="middle" fill="{accent}" font-family="Arial,sans-serif" font-size="{font_size}" font-weight="800" textLength="{pill_width - 12}" lengthAdjust="spacingAndGlyphs">{html.escape(label)}</text>'
             f'</g>'
         )
     if not rows:
@@ -348,7 +352,6 @@ def make_activity_svg(items: list[dict], updated_at: str) -> str:
         + "</svg>"
     )
 
-
 def make_daily_quest_svg(
     today: dt.date,
     daily_counts: dict[dt.date, int],
@@ -363,7 +366,6 @@ def make_daily_quest_svg(
     xp = weekly_total * 25
     level = xp // 500 + 1
     current_xp = xp % 500
-    xp_progress = current_xp / 500 * 100
     goal = 5
     goal_percent = min(100, int(today_count / goal * 100))
     streak_end = today if today_count else today - dt.timedelta(days=1)
@@ -376,83 +378,99 @@ def make_daily_quest_svg(
     totals = (portfolio_stats or {}).get("total") or {}
     unique_visitors = totals.get("uv")
     page_views = totals.get("pv")
-    unique_value = f"{unique_visitors:,}" if isinstance(unique_visitors, int) else "—"
-    page_views_value = f"{page_views:,}" if isinstance(page_views, int) else "—"
+    unique_value = f"{unique_visitors:,}" if isinstance(unique_visitors, int) else "SYNC PENDING"
+    page_views_value = f"{page_views:,}" if isinstance(page_views, int) else "SYNC PENDING"
+
     cards = [
         ("TODAY'S COMMITS", f"{today_count:,}", "#27e7ff", "PUBLIC COMMIT RECORDS", "01"),
         ("PUBLIC REPOSITORIES", f"{public_repos:,}", "#ff4fb7", "ACCOUNT-WIDE COUNT", "02"),
-        ("UNIQUE VISITORS", unique_value, "#f5c451", "ALL-TIME VISITORS", "03"),
-        ("TOTAL PAGE VIEWS", page_views_value, "#60a5fa", "ALL-TIME PAGE LOADS", "04"),
+        ("UNIQUE PORTFOLIO VISITORS", unique_value, "#f5c451", "LIVE VERCEL TRAFFIC", "03"),
+        ("TOTAL PORTFOLIO PAGE VIEWS", page_views_value, "#60a5fa", "LIVE VERCEL PAGE LOADS", "04"),
         ("CURRENT STREAK", f"{streak} DAYS", "#4ade80", "CONSECUTIVE ACTIVE DAYS", "05"),
         (f"LEVEL {level} · WEEKLY XP", f"{xp:,}", "#b58cff", "25 XP / PUBLIC COMMIT", "06"),
     ]
+
     blocks = []
-    card_width = 150
+    card_width = 360
+    x_positions = [28, 420, 812]
+    y_positions = [91, 184]
     for i, (label, value, accent, subtitle, number) in enumerate(cards):
-        x = 20 + i * 160
+        x = x_positions[i % 3]
+        y = y_positions[i // 3]
+        value_size = 18 if len(value) > 10 else 23
         blocks.append(
-            f'<g transform="translate({x},88)">'
-            f'<rect width="{card_width}" height="102" rx="13" fill="#0c1729" stroke="{accent}" stroke-opacity=".76" stroke-width="1.2"/>'
-            f'<path d="M12 1H{card_width - 12}" stroke="{accent}" stroke-width="2" opacity=".75"/>'
-            f'<text x="13" y="22" fill="#8fa7c4" font-family="Arial,sans-serif" font-size="8.8" font-weight="700" letter-spacing=".55">{html.escape(label)}</text>'
-            f'<text x="13" y="59" fill="#f7fbff" font-family="Arial,sans-serif" font-size="21" font-weight="900">{html.escape(value)}</text>'
-            f'<text x="13" y="82" fill="{accent}" font-family="Arial,sans-serif" font-size="8" font-weight="700">{html.escape(subtitle)}</text>'
-            f'<text x="{card_width - 12}" y="22" text-anchor="end" fill="{accent}" opacity=".72" font-family="Arial,sans-serif" font-size="8">{number}</text>'
+            f'<g transform="translate({x},{y})">'
+            f'<rect width="{card_width}" height="78" rx="14" fill="#0c1729" stroke="{accent}" stroke-opacity=".78" stroke-width="1.25"/>'
+            f'<path d="M14 1H{card_width - 14}" stroke="{accent}" stroke-width="2" opacity=".82"/>'
+            f'<text x="17" y="23" fill="#9bb0ca" font-family="Arial,sans-serif" font-size="10" font-weight="700" letter-spacing=".7">{html.escape(label)}</text>'
+            f'<text x="17" y="53" fill="#f7fbff" font-family="Arial,sans-serif" font-size="{value_size}" font-weight="900">{html.escape(value)}</text>'
+            f'<text x="{card_width - 17}" y="23" text-anchor="end" fill="{accent}" opacity=".8" font-family="Arial,sans-serif" font-size="8.5" font-weight="700">{number}</text>'
+            f'<text x="{card_width - 17}" y="57" text-anchor="end" fill="{accent}" font-family="Arial,sans-serif" font-size="8.5" font-weight="700">{html.escape(subtitle)}</text>'
             f'</g>'
         )
 
-    chart_x, chart_y, chart_w, chart_h = 54, 277, 892, 96
+    chart_x = 78
+    chart_y = 365
+    chart_h = 104
     max_value = max([daily_counts.get(day, 0) for day in week] + [1])
+    bar_w = 82
+    gap = 67
     bars = []
-    bar_w = 64
-    gap = 59
     for i, day in enumerate(week):
         count = daily_counts.get(day, 0)
         h = max(4, chart_h * count / max_value) if count else 4
-        x = chart_x + 16 + i * (bar_w + gap)
+        x = chart_x + 8 + i * (bar_w + gap)
         y = chart_y + chart_h - h
         is_today = day == today
-        accent = "#27e7ff" if is_today else "#8b72ff"
+        accent = "#27d9f5" if is_today else "#8b72ff"
+        value_size = 11 if count < 1000 else 9.5
         bars.append(
-            f'<rect x="{x}" y="{y:.1f}" width="{bar_w}" height="{h:.1f}" rx="7" fill="{accent}" opacity=".93"/>'
-            f'<rect x="{x}" y="{y:.1f}" width="{bar_w}" height="3" rx="2" fill="#ffffff" opacity=".34"/>'
-            f'<text x="{x + bar_w/2}" y="{y - 8:.1f}" text-anchor="middle" fill="#f1f6ff" font-family="Arial,sans-serif" font-size="10" font-weight="800">{count}</text>'
-            f'<text x="{x + bar_w/2}" y="{chart_y + chart_h + 20}" text-anchor="middle" fill="{accent if is_today else "#90a4bf"}" font-family="Arial,sans-serif" font-size="9.5" font-weight="700">{day.strftime("%a").upper()}</text>'
+            f'<rect x="{x}" y="{y:.1f}" width="{bar_w}" height="{h:.1f}" rx="8" fill="{accent}" opacity=".94"/>'
+            f'<rect x="{x}" y="{y:.1f}" width="{bar_w}" height="3" rx="2" fill="#ffffff" opacity=".32"/>'
+            f'<text x="{x + bar_w / 2}" y="{y - 10:.1f}" text-anchor="middle" fill="#f1f6ff" font-family="Arial,sans-serif" font-size="{value_size}" font-weight="800">{count:,}</text>'
+            f'<text x="{x + bar_w / 2}" y="{chart_y + chart_h + 22}" text-anchor="middle" fill="{accent if is_today else "#9badc6"}" font-family="Arial,sans-serif" font-size="10" font-weight="700">{day.strftime("%a").upper()}</text>'
         )
 
-    progress_width = 890 * goal_percent / 100
+    progress_width = 1044 * goal_percent / 100
+    visitor_status = "VERCEL PORTFOLIO · ICOUNT ANALYTICS"
+    if not isinstance(unique_visitors, int) or not isinstance(page_views, int):
+        visitor_status += " · WAITING FOR FIRST VALID STATS RESPONSE"
+
     return (
-        '<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="440" viewBox="0 0 1000 440">'
+        '<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="570" viewBox="0 0 1200 570" role="img" aria-labelledby="questTitle questDesc">'
+        '<title id="questTitle">ASC Developer Quest and portfolio traffic</title>'
+        '<desc id="questDesc">Developer activity dashboard with public commits, repositories, portfolio visitors, page views, streak and weekly XP.</desc>'
         '<defs>'
         '<linearGradient id="questEdge" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#27e7ff"/><stop offset=".48" stop-color="#9b72ff"/><stop offset="1" stop-color="#ff4fb7"/></linearGradient>'
         '<linearGradient id="questProgress" x1="0" x2="1"><stop stop-color="#27e7ff"/><stop offset=".55" stop-color="#9b72ff"/><stop offset="1" stop-color="#ff4fb7"/></linearGradient>'
-        '<radialGradient id="questAura"><stop stop-color="#214b83" stop-opacity=".32"/><stop offset="1" stop-color="#070b16" stop-opacity="0"/></radialGradient>'
-        '<pattern id="questGrid" width="26" height="26" patternUnits="userSpaceOnUse"><path d="M26 0H0V26" fill="none" stroke="#8296b5" stroke-opacity=".07"/></pattern>'
-        '<filter id="questGlow"><feGaussianBlur stdDeviation="4" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>'
+        '<radialGradient id="questAura"><stop stop-color="#214b83" stop-opacity=".3"/><stop offset="1" stop-color="#070b16" stop-opacity="0"/></radialGradient>'
+        '<pattern id="questGrid" width="28" height="28" patternUnits="userSpaceOnUse"><path d="M28 0H0V28" fill="none" stroke="#8296b5" stroke-opacity=".065"/></pattern>'
+        '<filter id="questGlow" x="-20%" y="-80%" width="140%" height="260%"><feGaussianBlur stdDeviation="4" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>'
         '</defs>'
-        '<rect width="1000" height="440" rx="20" fill="#070b16" stroke="#3a4b68" stroke-width="1.3"/>'
-        '<rect width="1000" height="440" rx="20" fill="url(#questGrid)"/>'
-        '<ellipse cx="520" cy="220" rx="480" ry="280" fill="url(#questAura)"/>'
-        '<path d="M20 67H980" stroke="url(#questEdge)" stroke-width="2" filter="url(#questGlow)"/>'
-        '<rect x="24" y="20" width="5" height="25" rx="2" fill="#27e7ff"/>'
-        '<text x="42" y="37" fill="#f7fbff" font-family="Arial,sans-serif" font-size="20" font-weight="900" letter-spacing=".7">ASC // DEVELOPER QUEST</text>'
-        '<text x="42" y="55" fill="#8fa7c4" font-family="Arial,sans-serif" font-size="9.5" letter-spacing=".8">PLAYER PROFILE · ENGINEERING CLASS · PUBLIC ACTIVITY ONLY</text>'
-        f'<circle cx="816" cy="34" r="4" fill="#4ade80"><animate attributeName="opacity" values=".35;1;.35" dur="2s" repeatCount="indefinite"/></circle>'
-        f'<text x="830" y="37" fill="#4ade80" font-family="Arial,sans-serif" font-size="9" font-weight="800">LIVE SYNC</text>'
-        f'<text x="976" y="55" text-anchor="end" fill="#7187a5" font-family="Arial,sans-serif" font-size="8.5">{html.escape(updated_at)}</text>'
+        '<rect width="1200" height="570" rx="22" fill="#070b16" stroke="#3a4b68" stroke-width="1.4"/>'
+        '<rect width="1200" height="570" rx="22" fill="url(#questGrid)"/>'
+        '<ellipse cx="610" cy="285" rx="560" ry="340" fill="url(#questAura)"/>'
+        '<path d="M24 70H1176" stroke="url(#questEdge)" stroke-width="2" filter="url(#questGlow)"/>'
+        '<rect x="27" y="22" width="5" height="28" rx="2" fill="#27e7ff"/>'
+        '<text x="46" y="39" fill="#f7fbff" font-family="Arial,sans-serif" font-size="21" font-weight="900" letter-spacing=".8">ASC // DEVELOPER QUEST</text>'
+        '<text x="46" y="58" fill="#91a6c4" font-family="Arial,sans-serif" font-size="10" letter-spacing=".9">ENGINEERING ACTIVITY · PORTFOLIO TRAFFIC · PUBLIC DATA</text>'
+        '<circle cx="1040" cy="34" r="4" fill="#4ade80"><animate attributeName="opacity" values=".35;1;.35" dur="2s" repeatCount="indefinite"/></circle>'
+        '<text x="1053" y="38" fill="#4ade80" font-family="Arial,sans-serif" font-size="10" font-weight="800">SYNCED</text>'
+        f'<text x="1170" y="58" text-anchor="end" fill="#7187a5" font-family="Arial,sans-serif" font-size="9">{html.escape(updated_at)}</text>'
         + "".join(blocks)
-        + '<path d="M24 211H976" stroke="#2b3b56" stroke-width="1"/>'
-        + '<text x="30" y="239" fill="#dceaff" font-family="Arial,sans-serif" font-size="11" font-weight="800" letter-spacing=".7">7-DAY ACTIVITY MAP</text>'
-        + "<text x=\"970\" y=\"239\" text-anchor=\"end\" fill=\"#91a6c4\" font-family=\"Arial,sans-serif\" font-size=\"9\">TODAY'S MISSION · 5 PUBLIC COMMITS</text>"
-        + '<path d="M54 273H946" stroke="#273b59" stroke-width="1" stroke-dasharray="4 6"/>'
+        + '<path d="M28 282H1172" stroke="#2b3b56" stroke-width="1"/>'
+        + '<text x="36" y="314" fill="#e5efff" font-family="Arial,sans-serif" font-size="12" font-weight="800" letter-spacing=".8">7-DAY COMMIT VELOCITY</text>'
+        + f'<text x="1164" y="314" text-anchor="end" fill="#91a6c4" font-family="Arial,sans-serif" font-size="9.5">TODAY · {today_count:,} PUBLIC COMMITS</text>'
+        + '<path d="M78 356H1122" stroke="#273b59" stroke-width="1" stroke-dasharray="4 7"/>'
         + "".join(bars)
-        + '<rect x="54" y="403" width="892" height="8" rx="4" fill="#18263d"/>'
-        + f'<rect x="54" y="403" width="{progress_width:.1f}" height="8" rx="4" fill="url(#questProgress)" filter="url(#questGlow)"/>'
-        + f'<text x="54" y="429" fill="#a9bdd7" font-family="Arial,sans-serif" font-size="9">DAILY MISSION: {today_count}/{goal} COMMITS · {goal_percent}% COMPLETE</text>'
-        + f'<text x="946" y="429" text-anchor="end" fill="#7088a8" font-family="Arial,sans-serif" font-size="8.5">WEEKLY XP: {current_xp}/500 TO NEXT LEVEL · TOTAL {xp:,} XP</text>'
+        + '<rect x="78" y="514" width="1044" height="8" rx="4" fill="#18263d"/>'
+        + f'<rect x="78" y="514" width="{progress_width:.1f}" height="8" rx="4" fill="url(#questProgress)" filter="url(#questGlow)"/>'
+        + f'<text x="78" y="544" fill="#a9bdd7" font-family="Arial,sans-serif" font-size="10" font-weight="700">DAILY MISSION · {today_count:,}/{goal} COMMITS · {goal_percent}% COMPLETE</text>'
+        + f'<text x="1122" y="544" text-anchor="end" fill="#a9bdd7" font-family="Arial,sans-serif" font-size="10">WEEKLY XP · {current_xp:,}/500 TO NEXT LEVEL · {xp:,} TOTAL XP</text>'
+        + f'<text x="78" y="560" fill="#647d9a" font-family="Arial,sans-serif" font-size="8.5">{html.escape(visitor_status)}</text>'
+        + '<text x="1122" y="560" text-anchor="end" fill="#647d9a" font-family="Arial,sans-serif" font-size="8.5">25 XP / PUBLIC COMMIT · PRIVATE ACTIVITY EXCLUDED</text>'
         + "</svg>"
     )
-
 
 def make_portfolio_views_svg(portfolio_stats: dict | None) -> str:
     """Render a local SVG badge so the README preview never depends on a third-party image endpoint."""
@@ -490,7 +508,7 @@ def make_portfolio_views_svg(portfolio_stats: dict | None) -> str:
 
 def get_portfolio_stats() -> dict | None:
     """Read public iCount analytics for the portfolio without incrementing visits."""
-    url = "https://icount.kr/api.php?id=adarsh-engineering-portfolio-rust.vercel.app"
+    url = "https://icount.kr/api.php?id=adarsh-engineering-portfolio-rust.vercel.app&format=json"
     try:
         request = urllib.request.Request(
             url,
@@ -502,9 +520,22 @@ def get_portfolio_stats() -> dict | None:
             print("iCount has no stats record yet; waiting for the first human portfolio visit.")
             return None
         payload = json.loads(body)
+        if not isinstance(payload, dict):
+            raise ValueError("iCount returned a non-object JSON payload.")
         total = payload.get("total") or {}
-        if not isinstance(total.get("uv"), int) or not isinstance(total.get("pv"), int):
-            raise ValueError("iCount did not return total unique visitors and page views.")
+        def numeric_count(value):
+            if isinstance(value, bool):
+                return None
+            if isinstance(value, int):
+                return value if value >= 0 else None
+            if isinstance(value, str) and value.replace(",", "").strip().isdigit():
+                return int(value.replace(",", "").strip())
+            return None
+        uv = numeric_count(total.get("uv"))
+        pv = numeric_count(total.get("pv"))
+        if uv is None or pv is None:
+            raise ValueError("iCount JSON is valid but total.uv / total.pv are not available yet.")
+        payload["total"] = {**total, "uv": uv, "pv": pv}
         return payload
     except Exception as exc:
         print(f"Warning: iCount portfolio analytics unavailable: {exc}")
