@@ -14,7 +14,7 @@
 </p>
 
 <p align="center">
-  <img src="https://icount.kr/count.php?id=adarsh-singh-chauhan.github.io&amp;format=badge" alt="Live portfolio page-view counter"/>
+  <img src="https://raw.githubusercontent.com/Adarsh-Singh-Chauhan/Adarsh-Singh-Chauhan/output/portfolio-views.svg" width="420" alt="Live portfolio page-view counter, refreshed hourly"/>
 </p>
 
 <table>
