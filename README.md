@@ -20,7 +20,7 @@
 
 <p align="center">
   <a href="#user-content-github-mission-control">
-    <img src="https://raw.githubusercontent.com/Adarsh-Singh-Chauhan/Adarsh-Singh-Chauhan/output/portfolio-views.svg" width="520" alt="Live portfolio views — refreshed hourly"/>
+    <img src="./assets/engineering-playbook.svg" width="100%" alt="Engineering Playbook — Design, Build, Verify, Ship"/>
   </a>
 </p>
 
