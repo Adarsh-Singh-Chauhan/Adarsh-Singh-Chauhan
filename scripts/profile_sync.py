@@ -384,8 +384,8 @@ def make_daily_quest_svg(
     cards = [
         ("TODAY'S COMMITS", f"{today_count:,}", "#27e7ff", "PUBLIC COMMIT RECORDS", "01"),
         ("PUBLIC REPOSITORIES", f"{public_repos:,}", "#ff4fb7", "ACCOUNT-WIDE COUNT", "02"),
-        ("UNIQUE PORTFOLIO VISITORS", unique_value, "#f5c451", "LIVE VERCEL TRAFFIC", "03"),
-        ("TOTAL PORTFOLIO PAGE VIEWS", page_views_value, "#60a5fa", "LIVE VERCEL PAGE LOADS", "04"),
+        ("UNIQUE VISITORS · 30D", unique_value, "#f5c451", "VERCEL WEB ANALYTICS", "03"),
+        ("PAGE VIEWS · 30D", page_views_value, "#60a5fa", "VERCEL WEB ANALYTICS", "04"),
         ("CURRENT STREAK", f"{streak} DAYS", "#4ade80", "CONSECUTIVE ACTIVE DAYS", "05"),
         (f"LEVEL {level} · WEEKLY XP", f"{xp:,}", "#b58cff", "25 XP / PUBLIC COMMIT", "06"),
     ]
@@ -432,9 +432,9 @@ def make_daily_quest_svg(
         )
 
     progress_width = 1044 * goal_percent / 100
-    visitor_status = "VERCEL PORTFOLIO · ICOUNT ANALYTICS"
+    visitor_status = "VERCEL PORTFOLIO · WEB ANALYTICS · LAST 30 DAYS"
     if not isinstance(unique_visitors, int) or not isinstance(page_views, int):
-        visitor_status += " · WAITING FOR FIRST VALID STATS RESPONSE"
+        visitor_status += " · ENABLE ANALYTICS + ADD SERVER TOKEN TO SYNC"
 
     return (
         '<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="570" viewBox="0 0 1200 570" role="img" aria-labelledby="questTitle questDesc">'
@@ -507,58 +507,67 @@ def make_portfolio_views_svg(portfolio_stats: dict | None) -> str:
 
 
 def get_portfolio_stats() -> dict | None:
-    """Read public iCount analytics for the live Vercel portfolio without incrementing visits."""
-    base_url = "https://icount.kr/api.php?id=adarsh-engineering-portfolio-rust.vercel.app"
-    endpoints = [base_url + "&format=json", base_url]
-    for url in endpoints:
-        try:
-            request = urllib.request.Request(
-                url,
-                headers={
-                    "Accept": "application/json",
-                    "Cache-Control": "no-cache",
-                    "User-Agent": "Mozilla/5.0 (compatible; AdarshPortfolioStats/1.0)",
-                },
-            )
-            with urllib.request.urlopen(request, timeout=15) as response:
-                status = getattr(response, "status", 200)
-                content_type = response.headers.get("Content-Type", "unknown")
-                body = response.read().decode("utf-8", errors="replace").strip()
-            print(f"iCount stats probe: HTTP {status}; content-type={content_type}; bytes={len(body)}")
-            if not body:
-                print("iCount returned an empty response; portfolio visits may not have synced yet.")
-                continue
-            try:
-                payload = json.loads(body)
-            except json.JSONDecodeError:
-                preview = body[:180].replace("\n", " ").replace("\r", " ")
-                print(f"iCount returned non-JSON content: {preview}")
-                continue
-            if not isinstance(payload, dict):
-                print("iCount returned JSON in an unexpected shape.")
-                continue
-            total = payload.get("total") or {}
+    """Read anonymized 30-day Vercel Web Analytics totals from the portfolio's server-side API."""
+    url = "https://adarsh-engineering-portfolio-rust.vercel.app/api/portfolio-stats"
+    try:
+        request = urllib.request.Request(
+            url,
+            headers={
+                "Accept": "application/json",
+                "Cache-Control": "no-cache",
+                "User-Agent": "Adarsh-Profile-Sync/1.0",
+            },
+        )
+        with urllib.request.urlopen(request, timeout=20) as response:
+            status = getattr(response, "status", 200)
+            body = response.read().decode("utf-8", errors="replace").strip()
+        if not body:
+            print(f"Portfolio analytics API returned an empty HTTP {status} response.")
+            return None
+        payload = json.loads(body)
+        if not isinstance(payload, dict):
+            print("Portfolio analytics API returned an unexpected response shape.")
+            return None
+        if payload.get("status") != "ready":
+            print(f"Portfolio analytics is not ready: {payload.get('status', 'unknown')}.")
+            return None
 
-            def numeric_count(value):
-                if isinstance(value, bool):
-                    return None
-                if isinstance(value, int):
-                    return value if value >= 0 else None
-                if isinstance(value, str) and value.replace(",", "").strip().isdigit():
-                    return int(value.replace(",", "").strip())
+        totals = payload.get("total") or {}
+
+        def numeric_count(value):
+            if isinstance(value, bool):
                 return None
+            if isinstance(value, int):
+                return value if value >= 0 else None
+            if isinstance(value, str) and value.replace(",", "").strip().isdigit():
+                return int(value.replace(",", "").strip())
+            return None
 
-            uv = numeric_count(total.get("uv"))
-            pv = numeric_count(total.get("pv"))
-            if uv is None or pv is None:
-                print("iCount JSON did not include numeric total.uv and total.pv fields.")
-                continue
-            payload["total"] = {**total, "uv": uv, "pv": pv}
-            return payload
-        except Exception as exc:
-            print(f"iCount endpoint unavailable ({url.split('?')[0]}): {exc}")
-    print("Portfolio traffic remains pending; no fabricated visitor totals will be displayed.")
-    return None
+        uv = numeric_count(totals.get("uv"))
+        pv = numeric_count(totals.get("pv"))
+        if uv is None and pv is None:
+            print("Portfolio analytics API did not return visitor or page-view totals.")
+            return None
+        payload["total"] = {**totals, "uv": uv, "pv": pv}
+        print(
+            "Vercel Web Analytics synced: "
+            f"{uv if uv is not None else 'visitors pending'} unique visitors and "
+            f"{pv if pv is not None else 'page views pending'} page views in the last 30 days."
+        )
+        return payload
+    except urllib.error.HTTPError as exc:
+        body = exc.read().decode("utf-8", errors="replace")
+        try:
+            status_payload = json.loads(body)
+            state = status_payload.get("status", "unavailable")
+        except Exception:
+            state = "unavailable"
+        print(f"Portfolio analytics API returned HTTP {exc.code} ({state}); visitor totals remain pending.")
+        return None
+    except Exception as exc:
+        print(f"Vercel portfolio analytics unavailable: {exc}")
+        return None
+
 
 def main() -> None:
     DIST.mkdir(parents=True, exist_ok=True)
