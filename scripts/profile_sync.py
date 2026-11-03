@@ -80,8 +80,13 @@ def list_public_repositories() -> list[dict]:
     return public
 
 
-def commits_for_repo(repo: dict, since: str) -> list[dict]:
-    """Get commits attributed by GitHub to USERNAME in one public repository."""
+def commits_for_repo(
+    repo: dict,
+    since: str,
+    author_login: str | None = USERNAME,
+    source: str = "PUBLIC",
+) -> list[dict]:
+    """Fetch commits from a public repo, optionally filtered to one author."""
     owner = repo.get("owner", {}).get("login", USERNAME)
     name = repo.get("name")
     if not name:
@@ -90,15 +95,14 @@ def commits_for_repo(repo: dict, since: str) -> list[dict]:
     commits: list[dict] = []
     page = 1
     while True:
-        url = (
-            f"https://api.github.com/repos/{owner}/{name}/commits"
-            f"?author={USERNAME}&since={encoded_since}&per_page=100&page={page}"
-        )
+        query = []
+        if author_login:
+            query.append(f"author={urllib.parse.quote(author_login, safe='-')}")
+        query.extend((f"since={encoded_since}", "per_page=100", f"page={page}"))
+        url = f"https://api.github.com/repos/{owner}/{name}/commits?{'&'.join(query)}"
         try:
             batch = api_json(url)
         except urllib.error.HTTPError as exc:
-            # An empty repository or an inaccessible/deleted public repo should
-            # not fail the entire profile refresh.
             if exc.code in (404, 409, 422):
                 return commits
             raise
@@ -106,6 +110,7 @@ def commits_for_repo(repo: dict, since: str) -> list[dict]:
             return commits
         for commit in batch:
             commit["_repo_full_name"] = f"{owner}/{name}"
+            commit["_activity_source"] = source
         commits.extend(batch)
         if len(batch) < 100:
             break
