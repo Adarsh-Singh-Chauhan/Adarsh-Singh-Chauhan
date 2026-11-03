@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Refresh a GitHub profile using public repositories and public events only.
 
-The activity game card is built from commit records authored by the profile owner
+The activity game card is built from commit records authored by the profile owner and approved public team activity
 in public repositories. Private repository contents and private contribution data
 are never requested.
 """
