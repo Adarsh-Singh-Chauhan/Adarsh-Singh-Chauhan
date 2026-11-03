@@ -15,7 +15,7 @@
   <a href="https://github.com/Adarsh-Singh-Chauhan?tab=repositories"><img src="https://img.shields.io/badge/EXPLORE%20PROJECTS-GITHUB-111827?style=for-the-badge&logo=github&logoColor=white" alt="Explore GitHub projects"/></a>
   <a href="https://www.linkedin.com/in/adarsh-singh-5189b9283/"><img src="https://img.shields.io/badge/LINKEDIN-CONNECT-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="Connect on LinkedIn"/></a>
   <a href="https://adarsh-singh-chauhan.github.io/Adarsh-Singh-Chauhan/resume.html"><img src="https://img.shields.io/badge/RESUME-VIEW%20%2F%20PRINT-0EA5E9?style=for-the-badge&logo=adobeacrobatreader&logoColor=white" alt="View resume"/></a>
-  <a href="mailto:adarshsinghchauhan904@gmail.com"><img src="https://img.shields.io/badge/EMAIL-LET%27S%20TALK-334155?style=for-the-badge&logo=gmail&logoColor=white" alt="Email Adarsh"/></a>
+  <a href="mailto:chauhanadarshsingh28@gmail.com"><img src="https://img.shields.io/badge/EMAIL-LET%27S%20TALK-334155?style=for-the-badge&logo=gmail&logoColor=white" alt="Email Adarsh"/></a>
 </p>
 
 <p align="center">
@@ -127,7 +127,7 @@
   </tr>
 </table>
 
-<p align="center"><a href="https://github.com/Adarsh-Singh-Chauhan?tab=repositories"><img src="https://img.shields.io/badge/SEE%20ALL%2021%20REPOSITORIES-EXPLORE%20GITHUB-182033?style=for-the-badge&logo=github&logoColor=white" alt="See all GitHub repositories"/></a></p>
+<p align="center"><a href="https://github.com/Adarsh-Singh-Chauhan?tab=repositories"><img src="https://img.shields.io/badge/EXPLORE%20PUBLIC%20REPOSITORIES-GITHUB-182033?style=for-the-badge&logo=github&logoColor=white" alt="See all GitHub repositories"/></a></p>
 
 ## TECHNOLOGY STACK
 
@@ -160,6 +160,10 @@
 
 I focus on clear problem framing, maintainable architecture, incremental delivery, functional and regression testing, and reliable releases. I keep private project details private and label public team-collaboration activity separately from my own commits.
 
+## TEAM COLLABORATION
+
+I also follow shared product work through [Ansh-Portfolio](https://github.com/Ansh-Dubey-05/Ansh-Portfolio). Team repository activity is separate from commits authored in my own public repositories; open the [latest team commit history](https://github.com/Ansh-Dubey-05/Ansh-Portfolio/commits/main).
+
 ## GITHUB MISSION CONTROL
 
 <p align="center">
@@ -187,7 +191,7 @@ I focus on clear problem framing, maintainable architecture, incremental deliver
 <p align="center">
   <a href="https://adarsh-engineering-portfolio-rust.vercel.app/"><img src="https://img.shields.io/badge/PORTFOLIO-VISIT%20WEBSITE-EC4899?style=for-the-badge&logo=vercel&logoColor=white" alt="Visit portfolio"/></a>
   <a href="https://www.linkedin.com/in/adarsh-singh-5189b9283/"><img src="https://img.shields.io/badge/LINKEDIN-CONNECT-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"/></a>
-  <a href="mailto:adarshsinghchauhan904@gmail.com"><img src="https://img.shields.io/badge/EMAIL-CONTACT-334155?style=for-the-badge&logo=gmail&logoColor=white" alt="Email"/></a>
+  <a href="mailto:chauhanadarshsingh28@gmail.com"><img src="https://img.shields.io/badge/EMAIL-CONTACT-334155?style=for-the-badge&logo=gmail&logoColor=white" alt="Email"/></a>
 </p>
 
 <p align="center"><strong>THINK CLEARLY · BUILD BOLDLY · VALIDATE EVERYTHING · SHIP RESPONSIBLY</strong></p>
