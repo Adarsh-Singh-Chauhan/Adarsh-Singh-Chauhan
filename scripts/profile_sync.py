@@ -20,6 +20,7 @@ from zoneinfo import ZoneInfo
 
 USERNAME = "Adarsh-Singh-Chauhan"
 PROFILE_REPO = f"{USERNAME}/{USERNAME}"
+COLLAB_REPOSITORIES = ("Ansh-Dubey-05/Ansh-Portfolio",)
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 README = ROOT / "README.md"
 DIST = ROOT / "dist"
