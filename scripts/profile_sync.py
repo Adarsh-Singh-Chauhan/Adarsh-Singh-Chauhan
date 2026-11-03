@@ -122,6 +122,9 @@ def collect_public_commits(repositories: list[dict], since: str) -> list[dict]:
     now = dt.datetime.now(dt.timezone.utc)
     active = []
     for repo in repositories:
+        # Automated profile README/SVG refresh commits are not developer activity.
+        if repo.get("full_name") == PROFILE_REPO:
+            continue
         pushed = repo.get("pushed_at")
         if not pushed:
             continue
