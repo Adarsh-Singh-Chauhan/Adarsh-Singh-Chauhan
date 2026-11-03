@@ -154,6 +154,12 @@
 - Participant — National CyberShield Hackathon 2025
 - Additional learning — Microsoft Azure Computer Vision App Project
 
+## ENGINEERING PLAYBOOK
+
+**DISCOVER → ARCHITECT → BUILD → VALIDATE → SHIP**
+
+I focus on clear problem framing, maintainable architecture, incremental delivery, functional and regression testing, and reliable releases. I keep private project details private and label public team-collaboration activity separately from my own commits.
+
 ## GITHUB MISSION CONTROL
 
 <p align="center">
