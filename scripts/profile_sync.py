@@ -41,6 +41,14 @@ def api_json(url: str):
         return json.loads(response.read().decode("utf-8"))
 
 
+def api_json_public(url: str):
+    """Read a public GitHub endpoint without sending the profile repo token."""
+    public_headers = {key: value for key, value in HEADERS.items() if key != "Authorization"}
+    request = urllib.request.Request(url, headers=public_headers)
+    with urllib.request.urlopen(request, timeout=30) as response:
+        return json.loads(response.read().decode("utf-8"))
+
+
 def safe_text(value: str | None, limit: int = 88) -> str:
     text = " ".join((value or "").split())
     if len(text) > limit:
