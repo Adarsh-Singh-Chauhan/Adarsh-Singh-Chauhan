@@ -158,19 +158,19 @@
 
 <p align="center">
   <a href="#user-content-github-mission-control">
-    <img src="https://raw.githubusercontent.com/Adarsh-Singh-Chauhan/Adarsh-Singh-Chauhan/output/daily-quest.svg" width="100%" alt="Developer Quest — public commits, repository activity, streak and weekly XP"/>
+    <img src="./assets/generated/daily-quest.svg" width="100%" alt="Developer Quest — public commits, repository activity, streak and weekly XP"/>
   </a>
 </p>
 
 <p align="center">
   <a href="#user-content-github-mission-control">
-    <img src="https://raw.githubusercontent.com/Adarsh-Singh-Chauhan/Adarsh-Singh-Chauhan/output/public-activity.svg" width="100%" alt="Recent public GitHub commit activity"/>
+    <img src="./assets/generated/public-activity.svg" width="100%" alt="Recent public GitHub commit activity"/>
   </a>
 </p>
 
 <p align="center">
   <a href="#user-content-github-mission-control">
-    <img src="https://raw.githubusercontent.com/Adarsh-Singh-Chauhan/Adarsh-Singh-Chauhan/output/github-contribution-grid-snake-dark.svg" width="100%" alt="Animated GitHub contribution activity"/>
+    <img src="./assets/generated/github-contribution-grid-snake-dark.svg" width="100%" alt="Animated GitHub contribution activity"/>
   </a>
 </p>
 

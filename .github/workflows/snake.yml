@@ -44,11 +44,18 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Commit updated public repository feed
+      - name: Stage generated images inside the profile repository
+        run: |
+          mkdir -p assets/generated
+          cp dist/daily-quest.svg assets/generated/daily-quest.svg
+          cp dist/public-activity.svg assets/generated/public-activity.svg
+          cp dist/github-contribution-grid-snake-dark.svg assets/generated/github-contribution-grid-snake-dark.svg
+
+      - name: Commit refreshed README and local profile images
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "chore: refresh public GitHub profile data"
-          file_pattern: README.md
+          commit_message: "chore: refresh public GitHub profile data and generated images"
+          file_pattern: README.md assets/generated/*.svg
           branch: main
 
       - name: Publish generated profile assets
